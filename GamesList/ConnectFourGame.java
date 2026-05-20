@@ -20,13 +20,14 @@ public class ConnectFourGame {
             {
                 System.out.println("Please select a column to drop your tile into, player 2.");
             }
+            board.DisplayBoard();
             String columnString = columnPrompt.nextLine().toLowerCase();
             if(columnString.equals("quit"))
             {
                 System.out.println("Game has been aborted.");
                 break;
             }
-            board.DropIntoColumn(columnString, isPlayerOne);
+            isPlayerOne = board.DropIntoColumn(columnString, isPlayerOne);
         }
     }
 
