@@ -8,11 +8,11 @@ public class MainMenu {
         String menuString = "";
         GameSelector games = new GameSelector();
 
-        while(menuString != "quit")
+        while(!menuString.equals("quit"))
         {
             System.out.println("Select a game from our menu by typing in the number of the game. Type in \"Quit\" to quit \n 1. Connect 4");
             menuString = menuPrompt.nextLine().toLowerCase();
-            games.ChooseGame(menuString);
+            games.ChooseGame(menuString, menuPrompt);
         }
 
         System.out.println("Thank you for playing the classic games collection. \n Credits: \n Samuel Wynsma, programmer.");

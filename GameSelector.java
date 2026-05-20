@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import GamesList.ConnectFourGame;
 
 public class GameSelector {
@@ -7,12 +9,12 @@ public class GameSelector {
 
     }
 
-    public void ChooseGame(String menuString) {
+    public void ChooseGame(String menuString, Scanner menuPrompt) {
         switch(menuString)
         {
             case "1":
                 ConnectFourGame connectFour = new ConnectFourGame();
-                connectFour.PlayGame();
+                connectFour.PlayGame(menuPrompt);
                 break;
             default:
                 System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
