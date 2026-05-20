@@ -15,6 +15,7 @@ public class MainMenu {
             games.ChooseGame(menuString);
         }
 
+        System.out.println("Thank you for playing the classic games collection. \n Credits: \n Samuel Wynsma, programmer.");
         menuPrompt.close();
     }
 

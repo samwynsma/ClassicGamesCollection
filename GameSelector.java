@@ -1,3 +1,5 @@
+import GamesList.ConnectFourGame;
+
 public class GameSelector {
 
     public GameSelector()
@@ -6,7 +8,15 @@ public class GameSelector {
     }
 
     public void ChooseGame(String menuString) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ChooseGame'");
+        switch(menuString)
+        {
+            case "1":
+                ConnectFourGame connectFour = new ConnectFourGame();
+                connectFour.PlayGame();
+                break;
+            default:
+                System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
+                break;
+        }
     }
 }
