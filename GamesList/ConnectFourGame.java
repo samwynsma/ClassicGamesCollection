@@ -2,6 +2,7 @@ package GamesList;
 import java.util.Scanner;
 
 import GamesList.ConnectFourMaterials.ConnectFourBoard;
+import GamesList.ConnectFourMaterials.ConnectFourGameController;
 
 public class ConnectFourGame {
 
@@ -10,6 +11,7 @@ public class ConnectFourGame {
         boolean isGameOver = false;
         boolean isPlayerOne = true;
         ConnectFourBoard board = new ConnectFourBoard();
+        ConnectFourGameController gameInfo = new ConnectFourGameController();
         while(!isGameOver)
         {
             if(isPlayerOne)
@@ -28,7 +30,11 @@ public class ConnectFourGame {
                 break;
             }
             isPlayerOne = board.DropIntoColumn(columnString, isPlayerOne);
+            isGameOver = gameInfo.CheckVictory(board, isPlayerOne);
         }
+
+        System.out.println("The game is over.");
+        board.DisplayBoard();
     }
 
 }

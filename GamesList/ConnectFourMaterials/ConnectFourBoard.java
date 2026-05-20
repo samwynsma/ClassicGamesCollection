@@ -4,11 +4,13 @@ public class ConnectFourBoard {
 
     private char[][] columns;
     private int[] dropLocations;
+    private int[] mostRecentMove;
 
     public ConnectFourBoard()
     {
         columns = new char[7][6];
         dropLocations = new int[7];
+        mostRecentMove = new int[2];
         for(int i = 0; i < columns.length; i++)
         {
             for(int j = 0; j < columns[i].length; j++)
@@ -39,12 +41,16 @@ public class ConnectFourBoard {
         else if(player)
         {
             columns[colVal-1][dropLocations[colVal-1]] = 'X';
+            mostRecentMove[0] = colVal-1;
+            mostRecentMove[1] = dropLocations[colVal-1];
             dropLocations[colVal-1]--;
             player = false;
         }
         else
         {
             columns[colVal-1][dropLocations[colVal-1]] = 'O';
+            mostRecentMove[0] = colVal-1;
+            mostRecentMove[1] = dropLocations[colVal-1];
             dropLocations[colVal-1]--;
             player = true;
         }
@@ -62,6 +68,14 @@ public class ConnectFourBoard {
             board.append("\n");
         }
         System.out.print(board);
+    }
+
+    public char[][] GetColumns(){
+        return columns;
+    }
+
+    public int[] GetMostRecentMove(){
+        return mostRecentMove;
     }
 
 }
