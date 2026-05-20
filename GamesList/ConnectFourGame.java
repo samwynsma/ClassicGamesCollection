@@ -1,6 +1,8 @@
 package GamesList;
 import java.util.Scanner;
 
+import GamesList.ConnectFourMaterials.ConnectFourBoard;
+
 public class ConnectFourGame {
 
     public void PlayGame() {
@@ -24,7 +26,7 @@ public class ConnectFourGame {
             {
                 break;
             }
-            board.DropIntoColumn(columnString);
+            board.DropIntoColumn(columnString, isPlayerOne);
         }
 
         columnScanner.close();
