@@ -18,9 +18,13 @@ public class ConnectFourGameController {
         {
             winner = "Player 1";
         }
-        else
+        else if(victoryToken == 'O')
         {
             winner = "Player 2";
+        }
+        else
+        {
+            return false;
         }
         boolean isWin = false;
         boolean isDraw = false;
@@ -66,6 +70,20 @@ public class ConnectFourGameController {
             }
             if(isWin)
                 break;
+        }
+        isDraw = true;
+        int[] dropCols = board.GetDropLocations();
+        for(int i = 0; i < dropCols.length; i++)
+        {
+            if(dropCols[i] >= 0)
+            {
+                isDraw = false;
+                break;
+            }
+        }
+        if(isDraw && !isWin)
+        {
+            winner = "Nobody";
         }
         return isWin || isDraw;
     }

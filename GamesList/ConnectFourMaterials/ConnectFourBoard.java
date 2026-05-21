@@ -78,4 +78,8 @@ public class ConnectFourBoard {
         return mostRecentMove;
     }
 
+    public int[] GetDropLocations(){
+        return dropLocations;
+    }
+
 }
