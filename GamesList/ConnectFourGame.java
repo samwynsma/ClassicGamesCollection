@@ -30,10 +30,11 @@ public class ConnectFourGame {
                 break;
             }
             isPlayerOne = board.DropIntoColumn(columnString, isPlayerOne);
-            isGameOver = gameInfo.CheckVictory(board, isPlayerOne);
+            isGameOver = gameInfo.CheckVictory(board);
         }
 
         System.out.println("The game is over.");
+        System.out.println(gameInfo.getWinner() + " is the winner.");
         board.DisplayBoard();
     }
 

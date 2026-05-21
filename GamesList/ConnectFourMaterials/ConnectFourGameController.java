@@ -7,65 +7,79 @@ public class ConnectFourGameController {
         winner = "";
     }
 
-    public boolean CheckVictory(ConnectFourBoard board, boolean isPlayerOne) {
+    public boolean CheckVictory(ConnectFourBoard board) {
 
         char[][] boardInfo = board.GetColumns();
         int[] move = board.GetMostRecentMove();
         int col = move[0];
         int row = move[1];
         char victoryToken = boardInfo[col][row];
-        if(row < 3)
+        if(victoryToken == 'X')
         {
-            boolean isWin = true;
-            for(int i = row; i < row + 4; i++)
+            winner = "Player 1";
+        }
+        else
+        {
+            winner = "Player 2";
+        }
+        boolean isWin = false;
+        boolean isDraw = false;
+        for(int colVal = 0; colVal < 7; colVal++)
+        {
+            for(int rowVal = 0; rowVal < 6; rowVal++)
             {
-                char token = boardInfo[col][i];
+                char token = boardInfo[colVal][rowVal];
                 if(token != victoryToken)
                 {
-                    isWin = false;
-                    break;
+                    continue;
+                }
+                if(rowVal < 3)
+                {
+                    isWin = true;
+                    for(int i = rowVal; i < rowVal + 4; i++)
+                    {
+                        if(boardInfo[colVal][i] != token)
+                        {
+                            isWin = false;
+                            break;
+                        }
+                    }
+                    if(isWin)
+                        break;
+                }
+                if(colVal <= 3)
+                {
+                    isWin = true;
+                    for(int i = colVal; i < colVal + 4; i++)
+                    {
+                        if(boardInfo[i][rowVal] != token)
+                        {
+                            isWin = false;
+                            break;
+                        }
+                    }
+                    if(isWin)
+                        break;
+                }
+                if(colVal >= 3)
+                {
+                    isWin = true;
+                    for(int i = colVal; i > colVal - 4; i--)
+                    {
+                        if(boardInfo[i][rowVal] != token)
+                        {
+                            isWin = false;
+                            break;
+                        }
+                    }
+                    if(isWin)
+                        break;
                 }
             }
             if(isWin)
-            {
-                return true;
-            }
+                break;
         }
-        if(col >= 3)
-        {
-            boolean isWin = true;
-            for(int i = col; i > col - 4; i--)
-            {
-                char token = boardInfo[i][row];
-                if(token != victoryToken)
-                {
-                    isWin = false;
-                    break;
-                }
-            }
-            if(isWin)
-            {
-                return true;
-            }
-        }
-        if(col <= 3)
-        {
-            boolean isWin = true;
-            for(int i = col; i < col + 4; i++)
-            {
-                char token = boardInfo[i][row];
-                if(token != victoryToken)
-                {
-                    isWin = false;
-                    break;
-                }
-            }
-            if(isWin)
-            {
-                return true;
-            }
-        }
-        return false;
+        return isWin || isDraw;
     }
 
     public String getWinner(){
