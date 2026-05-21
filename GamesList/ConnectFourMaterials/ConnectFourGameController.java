@@ -35,43 +35,19 @@ public class ConnectFourGameController {
                 }
                 if(rowVal < 3)
                 {
-                    isWin = true;
-                    for(int i = rowVal; i < rowVal + 4; i++)
-                    {
-                        if(boardInfo[colVal][i] != token)
-                        {
-                            isWin = false;
-                            break;
-                        }
-                    }
+                    isWin = checkVertical(boardInfo, rowVal, colVal, token);
                     if(isWin)
                         break;
                 }
                 if(colVal <= 3)
                 {
-                    isWin = true;
-                    for(int i = colVal; i < colVal + 4; i++)
-                    {
-                        if(boardInfo[i][rowVal] != token)
-                        {
-                            isWin = false;
-                            break;
-                        }
-                    }
+                    isWin = checkHorizontal(boardInfo, rowVal, colVal, token, true);
                     if(isWin)
                         break;
                 }
                 if(colVal >= 3)
                 {
-                    isWin = true;
-                    for(int i = colVal; i > colVal - 4; i--)
-                    {
-                        if(boardInfo[i][rowVal] != token)
-                        {
-                            isWin = false;
-                            break;
-                        }
-                    }
+                    isWin = checkHorizontal(boardInfo, rowVal, colVal, token, false);
                     if(isWin)
                         break;
                 }
@@ -80,6 +56,46 @@ public class ConnectFourGameController {
                 break;
         }
         return isWin || isDraw;
+    }
+
+    public boolean checkVertical(char[][] board, int row, int col, char token)
+    {
+        boolean isWin = true;
+        for(int i = 0; i < 4; i++)
+        {
+            if(board[col][row+i] != token)
+            {
+                isWin = false;
+                break;
+            }
+        }
+        return isWin;
+    }
+
+    public boolean checkHorizontal(char[][] board, int row, int col, char token, boolean isRight)
+    {
+        boolean isWin = true;
+        for(int i = 0; i < 4; i++)
+        {
+            if(isRight)
+            {
+                if(board[col+i][row] != token)
+                {
+                    isWin = false;
+                    break;
+                }
+            }
+            else
+            {
+                if(board[col-i][row] != token)
+                {
+                    isWin = false;
+                    break;
+                }
+            }
+        }
+        return isWin;
+
     }
 
     public String getWinner(){
