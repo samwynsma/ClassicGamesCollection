@@ -51,6 +51,18 @@ public class ConnectFourGameController {
                     if(isWin)
                         break;
                 }
+                if(rowVal < 3 && colVal <= 3)
+                {
+                    isWin = checkDiagonal(boardInfo, rowVal, colVal, token, true);
+                    if(isWin)
+                        break;
+                }
+                if(rowVal < 3 && colVal >= 3)
+                {
+                    isWin = checkDiagonal(boardInfo, rowVal, colVal, token, false);
+                    if(isWin)
+                        break;
+                }
             }
             if(isWin)
                 break;
@@ -96,6 +108,31 @@ public class ConnectFourGameController {
         }
         return isWin;
 
+    }
+
+    public boolean checkDiagonal(char[][] board, int row, int col, char token, boolean isRight)
+    {
+        boolean isWin = true;
+        for(int i = 0; i < 4; i++)
+        {
+            if(isRight)
+            {
+                if(board[col+i][row+i] != token)
+                {
+                    isWin = false;
+                    break;
+                }
+            }
+            else
+            {
+                if(board[col-i][row+i] != token)
+                {
+                    isWin = false;
+                    break;
+                }
+            }
+        }
+        return isWin;
     }
 
     public String getWinner(){
