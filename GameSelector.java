@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import GamesList.ConnectFourGame;
+import GamesList.MasterMindGame;
 
 public class GameSelector {
 
@@ -16,6 +17,9 @@ public class GameSelector {
                 ConnectFourGame connectFour = new ConnectFourGame();
                 connectFour.PlayGame(menuPrompt);
                 break;
+            case "2":
+                MasterMindGame mastermind = new MasterMindGame();
+                mastermind.PlayGame(menuPrompt);
             default:
                 System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
                 break;
