@@ -18,6 +18,7 @@ public class MasterMindGame {
             String difficulty = menuPrompt.nextLine().toLowerCase();
             isValidDifficulty = gameInfo.SetDifficulty(difficulty);
         }
+        gameInfo.SetUpGame();
         boolean isSolved = false;
         while(!isSolved)
         {

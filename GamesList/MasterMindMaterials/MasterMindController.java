@@ -5,8 +5,10 @@ import java.util.*;
 public class MasterMindController {
 
     private String diff;
+    private MasterMindCode correctCode;
     private List<String> allowedDifficulties;
     private int guesses = 1;
+    private int maxElement = 0;
     public MasterMindController(){
         diff = "Medium";
         allowedDifficulties = new ArrayList<String>();
@@ -25,6 +27,31 @@ public class MasterMindController {
         }
         System.out.println(difficulty + " is not a valid difficulty option. Please enter easy, medium, hard, brutal, or impossible");
         return false;
+    }
+
+    public void SetUpGame()
+    {
+        if(diff == "easy")
+        {
+            maxElement = 4;
+        }
+        else if(diff == "medium")
+        {
+            maxElement = 5;
+        }
+        else if(diff == "hard")
+        {
+            maxElement = 6;
+        }
+        else if(diff == "brutal")
+        {
+            maxElement = 7;
+        }
+        else
+        {
+            maxElement = 9;
+        }
+        correctCode = new MasterMindCode(maxElement);
     }
 
     public void CheckValidity(String code) {
