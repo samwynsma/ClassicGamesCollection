@@ -18,6 +18,13 @@ public class MasterMindGame {
             String difficulty = menuPrompt.nextLine().toLowerCase();
             isValidDifficulty = gameInfo.SetDifficulty(difficulty);
         }
+        boolean isSolved = false;
+        while(!isSolved)
+        {
+            System.out.println("Please enter a four digit code.");
+            String code = menuPrompt.nextLine();
+            gameInfo.CheckValidity(code);
+        }
     }
 
 }
