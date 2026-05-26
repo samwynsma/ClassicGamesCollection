@@ -52,6 +52,7 @@ public class MasterMindController {
             maxElement = 9;
         }
         correctCode = new MasterMindCode(maxElement);
+        System.out.println(correctCode.DisplayCode());
     }
 
     public boolean CheckValidity(String code) {
