@@ -23,8 +23,16 @@ public class MasterMindGame {
         while(!isSolved)
         {
             System.out.println("Please enter a four digit code.");
-            String code = menuPrompt.nextLine();
-            gameInfo.CheckValidity(code);
+            String code = menuPrompt.nextLine().toLowerCase();
+            if(code.equals("quit"))
+            {
+                System.out.println("Game has been quit. Returning to main menu.");
+                break;
+            }
+            if(!gameInfo.CheckValidity(code))
+            {
+                continue;
+            }
         }
     }
 

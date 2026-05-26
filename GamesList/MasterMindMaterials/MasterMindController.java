@@ -31,19 +31,19 @@ public class MasterMindController {
 
     public void SetUpGame()
     {
-        if(diff == "easy")
+        if(diff.equals("easy"))
         {
             maxElement = 4;
         }
-        else if(diff == "medium")
+        else if(diff.equals("medium"))
         {
             maxElement = 5;
         }
-        else if(diff == "hard")
+        else if(diff.equals("hard"))
         {
             maxElement = 6;
         }
-        else if(diff == "brutal")
+        else if(diff.equals("brutal"))
         {
             maxElement = 7;
         }
@@ -54,9 +54,17 @@ public class MasterMindController {
         correctCode = new MasterMindCode(maxElement);
     }
 
-    public void CheckValidity(String code) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'CheckValidity'");
+    public boolean CheckValidity(String code) {
+        for(int i = 0; i < code.length(); i++)
+        {
+            int peg = (int)code.charAt(i) - 48;
+            if(peg > maxElement)
+            {
+                System.out.println("That code is invalid. Please make sure the pegs are between 0 and " + maxElement);
+                return false;
+            }
+        }
+        return true;
     }
 
 }
