@@ -79,7 +79,7 @@ public class MasterMindController {
         MasterMindCode guess = new MasterMindCode(code);
         if(guess.equals(correctCode))
         {
-            System.out.println("Correct answer. The number of gueesses it took you was " + guesses);
+            System.out.println("Correct answer. The number of guesses it took you was " + guesses);
             return true;
         }
         else
@@ -87,6 +87,36 @@ public class MasterMindController {
             System.out.println("Incorrect answer. Keep guessing.");
             return false;
         }
+    }
+
+    public void GiveHints(String code) {
+        int rightPlace = 0;
+        int wrongPlace = 0;
+        String solutionCode = correctCode.DisplayCode();
+        HashMap<Character, Integer> codeCounts = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> solutionCounts = new HashMap<Character, Integer>();
+        for(int i = 0; i < code.length(); i++)
+        {
+            char codeChar = code.charAt(i);
+            char solChar = solutionCode.charAt(i);
+            codeCounts.put(codeChar, codeCounts.getOrDefault(codeChar, 0) + 1);
+            solutionCounts.put(solChar, solutionCounts.getOrDefault(solChar, 0) + 1);
+            if(codeChar == solChar)
+            {
+                rightPlace++;
+            }
+        }
+
+        for(char key : codeCounts.keySet())
+        {
+            if(solutionCounts.containsKey(key))
+            {
+                wrongPlace += Math.min(codeCounts.get(key), solutionCounts.get(key));
+            }
+        }
+        wrongPlace -= rightPlace;
+
+        System.out.println("You have " + rightPlace + " pegs that are correct and in the right place, and " + wrongPlace + " pegs that are correct but in the wrong place.");
     }
 
 }

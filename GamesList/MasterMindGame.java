@@ -36,7 +36,7 @@ public class MasterMindGame {
             isSolved = gameInfo.CheckIfSolved(code);
             if(!isSolved)
             {
-                System.out.println("TODO");
+                gameInfo.GiveHints(code);
             }
         }
     }
