@@ -2,6 +2,8 @@ package GamesList;
 
 import java.util.Scanner;
 
+import GamesList.BlackJackMaterials.BlackJackGameController;
+
 public class BlackJackGame {
 
     private int wins;
@@ -19,9 +21,11 @@ public class BlackJackGame {
         System.out.println("Players alternate draws. This game is initially one player, but I will add a two player feature later.");
         System.out.println("Game will keep track of wins and losses until the player decided to quit.");
         String playString = "";
-        while(playString != "no")
+        BlackJackGameController gameInfo = new BlackJackGameController();
+
+        while(!playString.equals("no"))
         {
-            System.out.println("Would you like to play again?");
+            System.out.println("Would you like to play again (yes or no)?");
             playString = menuPrompt.nextLine().toLowerCase();
         }
 

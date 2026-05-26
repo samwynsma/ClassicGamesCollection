@@ -21,9 +21,11 @@ public class GameSelector {
             case "2":
                 MasterMindGame mastermind = new MasterMindGame();
                 mastermind.PlayGame(menuPrompt);
+                break;
             case "3":
                 BlackJackGame blackjack = new BlackJackGame();
                 blackjack.PlayGame(menuPrompt);
+                break;
             default:
                 System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
                 break;
