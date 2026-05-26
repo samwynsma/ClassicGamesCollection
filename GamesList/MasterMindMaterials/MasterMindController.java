@@ -7,7 +7,7 @@ public class MasterMindController {
     private String diff;
     private MasterMindCode correctCode;
     private List<String> allowedDifficulties;
-    private int guesses = 1;
+    private int guesses = 0;
     private int maxElement = 0;
     public MasterMindController(){
         diff = "Medium";
@@ -65,7 +65,28 @@ public class MasterMindController {
                 return false;
             }
         }
+        guesses++;
         return true;
+    }
+
+    public String GetCode()
+    {
+        return correctCode.DisplayCode();
+    }
+
+    public boolean CheckIfSolved(String code)
+    {
+        MasterMindCode guess = new MasterMindCode(code);
+        if(guess.equals(correctCode))
+        {
+            System.out.println("Correct answer. The number of gueesses it took you was " + guesses);
+            return true;
+        }
+        else
+        {
+            System.out.println("Incorrect answer. Keep guessing.");
+            return false;
+        }
     }
 
 }

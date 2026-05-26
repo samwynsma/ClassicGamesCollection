@@ -26,12 +26,17 @@ public class MasterMindGame {
             String code = menuPrompt.nextLine().toLowerCase();
             if(code.equals("quit"))
             {
-                System.out.println("Game has been quit. Returning to main menu.");
+                System.out.println("Game has been quit. The correct code was " + gameInfo.GetCode() + ".");
                 break;
             }
             if(!gameInfo.CheckValidity(code))
             {
                 continue;
+            }
+            isSolved = gameInfo.CheckIfSolved(code);
+            if(!isSolved)
+            {
+                System.out.println("TODO");
             }
         }
     }

@@ -28,4 +28,17 @@ public class MasterMindCode {
         }
         return sb.toString();
     }
+
+    public boolean equals(MasterMindCode code)
+    {
+        char[] otherParts = code.codeParts;
+        for(int i = 0; i < codeParts.length; i++)
+        {
+            if(codeParts[i] != otherParts[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
