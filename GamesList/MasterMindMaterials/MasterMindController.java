@@ -116,7 +116,7 @@ public class MasterMindController {
         }
         wrongPlace -= rightPlace;
 
-        System.out.println("You have " + rightPlace + " pegs that are correct and in the right place, and " + wrongPlace + " pegs that are correct but in the wrong place.");
+        System.out.println("You have " + rightPlace + " peg(s) that are correct and in the right place, and " + wrongPlace + " peg(s) that are correct but in the wrong place.");
     }
 
 }
