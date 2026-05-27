@@ -27,8 +27,8 @@ public class BlackJackGame {
             BlackJackGameController gameInfo = new BlackJackGameController();
             while(!gameInfo.isGameOver)
             {
-                System.out.println("The opponent's visible total is " + gameInfo.dealer.GetVisibleCardValue() + ".");
-                System.out.println("Your total is " + gameInfo.player.GetCardValue() + ".");
+                System.out.println("The opponent's hand is " + gameInfo.dealer.DisplayVisibleHand() + ".");
+                System.out.println("Your hand is " + gameInfo.player.DisplayFullHand() + ".");
                 System.out.println("Would you like to draw another card, or would you like to fold?");
                 String continueString = menuPrompt.nextLine().toLowerCase();
                 if(continueString.equals("draw") || continueString.equals("yes"))

@@ -77,4 +77,28 @@ public class BlackJackHand {
         return isBusted;
     }
 
+    public String DisplayFullHand()
+    {
+        StringBuilder hand = new StringBuilder();
+        for(int i = 0; i < cards.size(); i++)
+        {
+            hand.append(cards.get(i));
+            if(i + 1 < cards.size())
+                hand.append(" ");
+        }
+        return hand.toString();
+    }
+
+    public String DisplayVisibleHand()
+    {
+        StringBuilder hand = new StringBuilder("?? ");
+        for(int i = 1; i < cards.size(); i++)
+        {
+            hand.append(cards.get(i));
+            if(i + 1 < cards.size())
+                hand.append(" ");
+        }
+        return hand.toString();
+    }
+
 }
