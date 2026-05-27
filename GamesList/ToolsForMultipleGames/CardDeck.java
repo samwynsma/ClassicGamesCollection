@@ -74,7 +74,10 @@ public class CardDeck {
         Random cardRandomizer = new Random();
         while(discardDeck.size() > 0)
         {
-
+            int cardLoc = cardRandomizer.nextInt(discardDeck.size());
+            String card = discardDeck.get(cardLoc);
+            drawDeck.add(card);
+            discardDeck.remove(cardLoc);
         }
     }
     
