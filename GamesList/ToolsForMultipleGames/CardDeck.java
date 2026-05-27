@@ -36,12 +36,46 @@ public class CardDeck {
         }
     }
 
-    public String DrawCard(String[] handCards)
+    public String DrawCard(List<String> cardsInUse)
     {
         String cardToRemove = drawDeck.get(drawDeck.size()-1);
         drawDeck.remove(drawDeck.size()-1);
         discardDeck.add(cardToRemove);
         return cardToRemove;
+    }
+
+    public void DiscardAllCards(List<String> cardsInUse)
+    {
+        for(int i = 0; i < cardsInUse.size(); i++)
+        {
+            discardDeck.add(cardsInUse.get(i));
+        }
+    }
+
+    public void InitialShuffle()
+    {
+        Random cardRandomizer = new Random();
+        List<String> allCards = new ArrayList<String>();
+        for(int i = 0; i < cards.length; i++)
+        {
+            allCards.add(cards[i]);
+        }
+        while(allCards.size() > 0)
+        {
+            int cardLoc = cardRandomizer.nextInt(allCards.size());
+            String card = allCards.get(cardLoc);
+            drawDeck.add(card);
+            allCards.remove(cardLoc);
+        }
+    }
+
+    public void ShuffleDeck()
+    {
+        Random cardRandomizer = new Random();
+        while(discardDeck.size() > 0)
+        {
+
+        }
     }
     
 }
