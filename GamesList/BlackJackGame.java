@@ -31,11 +31,11 @@ public class BlackJackGame {
                 System.out.println("Your total is " + gameInfo.player.GetCardValue() + ".");
                 System.out.println("Would you like to draw another card, or would you like to fold?");
                 String continueString = menuPrompt.nextLine().toLowerCase();
-                if(continueString == "draw" || continueString == "yes")
+                if(continueString.equals("draw") || continueString.equals("yes"))
                 {
                     gameInfo.PlayerDraw();
                 }
-                else if(continueString == "fold" || continueString == "no")
+                else if(continueString.equals("fold") || continueString.equals("no"))
                 {
                     gameInfo.PlayerQuits();
                     while(gameInfo.dealer.GetCardValue() < 17)
@@ -43,6 +43,11 @@ public class BlackJackGame {
                         gameInfo.DealerDraw();
                     }
                     gameInfo.DealerQuits();
+                }
+                else
+                {
+                    System.out.println("Invalid command: Please enter draw or fold.");
+                    continue;
                 }
 
                 if(gameInfo.dealer.GetCardValue() < 17 && !gameInfo.player.hasBusted())
@@ -53,7 +58,7 @@ public class BlackJackGame {
                 {
                     gameInfo.DealerQuits();
                 }
-                
+
             }
             System.out.println("Would you like to play again (yes or no)?");
             playString = menuPrompt.nextLine().toLowerCase();

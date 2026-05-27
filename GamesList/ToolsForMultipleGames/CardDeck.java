@@ -20,6 +20,7 @@ public class CardDeck {
                 cards[i * 13 + j] = card.toString();
             }
         }
+        InitialShuffle();
     }
 
     public CardDeck(char[] suits, int cardCount) {
@@ -34,6 +35,7 @@ public class CardDeck {
                 cards[i * cardCount + j] = card.toString();
             }
         }
+        InitialShuffle();
     }
 
     public String DrawCard()
@@ -60,6 +62,8 @@ public class CardDeck {
     public void InitialShuffle()
     {
         Random cardRandomizer = new Random();
+        drawDeck = new ArrayList<String>();
+        discardDeck = new ArrayList<String>();
         List<String> allCards = new ArrayList<String>();
         for(int i = 0; i < cards.length; i++)
         {
