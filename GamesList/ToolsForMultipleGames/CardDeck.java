@@ -1,8 +1,12 @@
 package GamesList.ToolsForMultipleGames;
 
+import java.util.*;
+
 public class CardDeck {
 
     String[] cards;
+    List<String> drawDeck;
+    List<String> discardDeck;
     public CardDeck(char[] suits) {
         String cardVals = "23456789TJQKA";
         cards = new String[suits.length * cardVals.length()];
@@ -30,6 +34,14 @@ public class CardDeck {
                 cards[i * cardCount + j] = card.toString();
             }
         }
+    }
+
+    public String DrawCard(String[] handCards)
+    {
+        String cardToRemove = drawDeck.get(drawDeck.size()-1);
+        drawDeck.remove(drawDeck.size()-1);
+        discardDeck.add(cardToRemove);
+        return cardToRemove;
     }
     
 }
