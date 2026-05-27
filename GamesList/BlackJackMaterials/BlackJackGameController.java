@@ -21,7 +21,8 @@ public class BlackJackGameController {
 
     public void PlayerDraw()
     {
-
+        String card = cards.DrawCard();
+        player.AddCard(card);
     }
 
     public void DealerDraw()

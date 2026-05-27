@@ -7,11 +7,70 @@ public class BlackJackHand {
     List<String> cards;
     int totalCardValue;
     int visibleCardValue;
+    boolean hasAce;
+    boolean isBusted;
 
     public BlackJackHand()
     {
         cards = new ArrayList<String>();
         totalCardValue = 0;
         visibleCardValue = 0;
+        hasAce = false;
+        isBusted = false;
     }
+
+    public void AddCard(String card) {
+        char rank = card.charAt(1);
+        int cardVal = 0;
+        switch(rank)
+        {
+            case 'A':
+                if(!hasAce && totalCardValue < 11) {
+                    hasAce = true;
+                    cardVal += 11;
+                }
+                else {
+                    cardVal++;
+                }
+                break;
+            case 'K': case 'Q': case 'J': case 'T':
+                cardVal += 10;
+                break;
+            default:
+                cardVal += (int)(rank - '0');
+                break;
+        }
+
+        if(cards.size() > 0)
+        {
+            visibleCardValue += cardVal;
+        }
+        totalCardValue += cardVal;
+
+        if(totalCardValue > 21)
+        {
+            if(hasAce)
+            {
+                hasAce = false;
+                totalCardValue -= 10;
+            }
+            else
+            {
+                isBusted = true;
+            }
+        }
+
+        cards.add(card);
+    }
+
+    public int GetCardValue()
+    {
+        return totalCardValue;
+    }
+
+    public int GetVisibleCardValue()
+    {
+        return visibleCardValue;
+    }
+
 }
