@@ -25,7 +25,36 @@ public class BlackJackGame {
         while(!playString.equals("no"))
         {
             BlackJackGameController gameInfo = new BlackJackGameController();
-            while(gameInfo)
+            while(!gameInfo.isGameOver)
+            {
+                System.out.println("The opponent's visible total is " + gameInfo.dealer.GetVisibleCardValue() + ".");
+                System.out.println("Your total is " + gameInfo.player.GetCardValue() + ".");
+                System.out.println("Would you like to draw another card, or would you like to fold?");
+                String continueString = menuPrompt.nextLine().toLowerCase();
+                if(continueString == "draw" || continueString == "yes")
+                {
+                    gameInfo.PlayerDraw();
+                }
+                else if(continueString == "fold" || continueString == "no")
+                {
+                    gameInfo.PlayerQuits();
+                    while(gameInfo.dealer.GetCardValue() < 17)
+                    {
+                        gameInfo.DealerDraw();
+                    }
+                    gameInfo.DealerQuits();
+                }
+
+                if(gameInfo.dealer.GetCardValue() < 17 && !gameInfo.player.hasBusted())
+                {
+                    gameInfo.DealerDraw();
+                }
+                else
+                {
+                    gameInfo.DealerQuits();
+                }
+                
+            }
             System.out.println("Would you like to play again (yes or no)?");
             playString = menuPrompt.nextLine().toLowerCase();
         }

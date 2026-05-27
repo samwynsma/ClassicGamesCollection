@@ -5,11 +5,12 @@ import GamesList.ToolsForMultipleGames.CardDeck;
 public class BlackJackGameController {
 
     private CardDeck cards;
-    private BlackJackHand dealer;
-    private BlackJackHand player;
-    private boolean isGameOver;
     private boolean playerOver;
     private boolean dealerOver;
+
+    public boolean isGameOver;
+    public BlackJackHand dealer;
+    public BlackJackHand player;
 
     public BlackJackGameController(){
         char[] suits = new char[4];
