@@ -68,4 +68,36 @@ public class BlackJackGameController {
         }
     }
 
+    public void CleanupGame()
+    {
+        cards.DiscardAllCards(player.cards);
+        cards.DiscardAllCards(dealer.cards);
+    }
+
+    public int DetermineWinner() {
+        System.out.println("Your score is " + player.GetCardValue() + " and the dealer's score is " + dealer.GetCardValue());
+        if(player.hasBusted())
+        {
+            System.out.println("Oh dear, you appear to have busted. The dealer has won.");
+            return 2;
+        }
+        else if(dealer.hasBusted())
+        {
+            System.out.println("The dealer has busted, and you're still standing.You have won.");
+            return 1;
+        }
+        else if(player.GetCardValue() > dealer.GetCardValue())
+        {
+            System.out.println("You beat the dealer.");
+            return 1;
+        }
+        else if(player.GetCardValue() < dealer.GetCardValue())
+        {
+            System.out.println("You lost to the dealer.");
+            return 2;
+        }
+        System.out.println("Nobody wins! Yay!");
+        return 0;
+    }
+
 }

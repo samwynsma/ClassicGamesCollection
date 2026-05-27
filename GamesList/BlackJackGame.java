@@ -60,6 +60,16 @@ public class BlackJackGame {
                 }
 
             }
+            int victorValue = gameInfo.DetermineWinner();
+            if(victorValue == 1)
+            {
+                wins++;
+            }
+            else if(victorValue == 2)
+            {
+                losses++;
+            }
+            gameInfo.CleanupGame();
             System.out.println("Would you like to play again (yes or no)?");
             playString = menuPrompt.nextLine().toLowerCase();
         }

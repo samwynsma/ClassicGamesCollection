@@ -42,6 +42,10 @@ public class CardDeck {
     {
         String cardToRemove = drawDeck.get(drawDeck.size()-1);
         drawDeck.remove(drawDeck.size()-1);
+        if(drawDeck.size() == 0)
+        {
+            ShuffleDeck();
+        }
         return cardToRemove;
     }
 
