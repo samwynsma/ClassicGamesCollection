@@ -36,12 +36,17 @@ public class CardDeck {
         }
     }
 
-    public String DrawCard(List<String> cardsInUse)
+    public String DrawCard()
     {
         String cardToRemove = drawDeck.get(drawDeck.size()-1);
         drawDeck.remove(drawDeck.size()-1);
-        discardDeck.add(cardToRemove);
         return cardToRemove;
+    }
+
+    public void DiscardCard(List<String> cardsInUse, String card)
+    {
+        cardsInUse.remove(card);
+        discardDeck.add(card);
     }
 
     public void DiscardAllCards(List<String> cardsInUse)

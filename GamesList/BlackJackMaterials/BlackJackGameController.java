@@ -15,11 +15,13 @@ public class BlackJackGameController {
         suits[2] = '♦';
         suits[3] = '♥';
         cards = new CardDeck(suits);
+        dealer = new BlackJackHand();
+        player = new BlackJackHand();
     }
 
     public void PlayerDraw()
     {
-        
+
     }
 
     public void DealerDraw()
