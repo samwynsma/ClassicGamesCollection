@@ -73,4 +73,9 @@ public class BlackJackHand {
         return visibleCardValue;
     }
 
+    public boolean hasBusted()
+    {
+        return isBusted;
+    }
+
 }
