@@ -3,6 +3,7 @@ import java.util.Scanner;
 import GamesList.BlackJackGame;
 import GamesList.ConnectFourGame;
 import GamesList.MasterMindGame;
+import GamesList.YachtGame;
 
 public class GameSelector {
 
@@ -26,6 +27,9 @@ public class GameSelector {
                 BlackJackGame blackjack = new BlackJackGame();
                 blackjack.PlayGame(menuPrompt);
                 break;
+            case "4":
+                YachtGame yacht = new YachtGame();
+                yacht.PlayGame(menuPrompt);
             default:
                 System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
                 break;
