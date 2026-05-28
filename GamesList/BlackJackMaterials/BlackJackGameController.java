@@ -83,8 +83,20 @@ public class BlackJackGameController {
         }
         else if(dealer.hasBusted())
         {
-            System.out.println("The dealer has busted, and you're still standing.You have won.");
+            System.out.println("The dealer has busted, and you're still standing. You have won.");
             return 1;
+        }
+        else if(player.HasBlackjack() && !dealer.HasBlackjack())
+        {
+            System.out.println("You have blackjack, and thus have beaten the dealer.");
+        }
+        else if(player.HasBlackjack() && dealer.HasBlackjack())
+        {
+            System.out.println("You both have blackjack, so its a tie.");
+        }
+        else if(dealer.HasBlackjack())
+        {
+            System.out.println("The dealer has blackjack, so you lose.");
         }
         else if(player.GetCardValue() > dealer.GetCardValue())
         {
