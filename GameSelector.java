@@ -30,6 +30,7 @@ public class GameSelector {
             case "4":
                 YachtGame yacht = new YachtGame();
                 yacht.PlayGame(menuPrompt);
+                break;
             default:
                 System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
                 break;
