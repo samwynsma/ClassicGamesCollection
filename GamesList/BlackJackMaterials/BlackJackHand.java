@@ -101,4 +101,16 @@ public class BlackJackHand {
         return hand.toString();
     }
 
+    public boolean HasBlackjack()
+    {
+        if(totalCardValue == 21 && cards.size() == 2)
+        {
+            if(cards.get(0).charAt(1) == 'J')
+                return true;
+            if(cards.get(1).charAt(1) == 'J')
+                return true;
+        }
+        return false;
+    }
+
 }
