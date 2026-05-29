@@ -126,7 +126,7 @@ public class YachtDiceRolls {
                 {
                     for(int i = 0; i < organizedDice.length; i++)
                     {
-                        if(organizedDice[i] >= 2)
+                        if(organizedDice[i] >= 3)
                         {
                             rollScores[7][index] = diceTotal + 10;
                             return rollScores[7][index];
@@ -141,12 +141,74 @@ public class YachtDiceRolls {
             case "five straight":
                 break;
             case "full house":
+                index = 0;
+                while(rollScores[10][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    boolean hasThree = false;
+                    boolean hasTwo = false;
+                    for(int i = 0; i < organizedDice.length; i++)
+                    {
+                        if(organizedDice[i] == 3)
+                            hasThree = true;
+                        else if(organizedDice[i] == 2)
+                            hasTwo = true;
+                    }
+                    if(hasTwo && hasThree)
+                    {
+                        rollScores[10][index] = diceTotal + 20;
+                        return rollScores[10][index];
+                    }
+                    rollScores[10][index] = 0;
+                    return 0;
+                }
                 break;
             case "four of a kind":
+                index = 0;
+                while(rollScores[11][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    for(int i = 0; i < organizedDice.length; i++)
+                    {
+                        if(organizedDice[i] >= 4)
+                        {
+                            rollScores[11][index] = diceTotal + 30;
+                            return rollScores[11][index];
+                        }
+                    }
+                    rollScores[11][index] = 0;
+                    return 0;
+                }
                 break;
             case "free":
+                index = 0;
+                while(rollScores[12][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[12][index] = diceTotal;
+                    return rollScores[12][index];
+                }
                 break;
             case "yacht":
+                index = 0;
+                while(rollScores[13][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    for(int i = 0; i < organizedDice.length; i++)
+                    {
+                        if(organizedDice[i] == 5)
+                        {
+                            rollScores[13][index] = diceTotal + 50;
+                            return rollScores[13][index];
+                        }
+                    }
+                    rollScores[11][index] = 0;
+                    return 0;
+                }
                 break;
         }
         return -1;
