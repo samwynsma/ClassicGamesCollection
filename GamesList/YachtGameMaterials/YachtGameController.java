@@ -31,7 +31,7 @@ public class YachtGameController {
 
     public boolean AssignCategory(String category)
     {
-        int rollScore = YachtDiceRolls.ScoreRoll(category);
+        int rollScore = yachtScores.ScoreRoll(category, dieValues);
         if(rollScore >= 0)
         {
             score += rollScore;

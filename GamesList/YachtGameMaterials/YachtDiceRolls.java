@@ -4,9 +4,11 @@ public class YachtDiceRolls {
 
 
     public int[][] rollScores;
+    public int rounds;
 
     public YachtDiceRolls(int x) {
 
+        rounds = x;
         rollScores = new int[14][x];
         for(int i = 0; i < 14; i++)
         {
@@ -17,10 +19,29 @@ public class YachtDiceRolls {
         }
     }
 
-    public static int ScoreRoll(String category) {
+    public int[] GetDiceNums(int[] roll)
+    {
+        int[] categorize = new int[6];
+        for(int i = 0; i < roll.length; i++)
+        {
+            categorize[roll[i]-1]++;
+        }
+        return categorize;
+    }
+
+    public int ScoreRoll(String category, int[] roll) {
+        int[] organizedDice = GetDiceNums(roll);
         switch(category)
         {
             case "ones":
+                int index = 0;
+                while(rollScores[0][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[0][index] = organizedDice[0];
+                    return rollScores[0][index];
+                }
                 break;
             case "twos":
                 break;
