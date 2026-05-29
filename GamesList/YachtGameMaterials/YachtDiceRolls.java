@@ -95,8 +95,46 @@ public class YachtDiceRolls {
                 }
                 break;
             case "two pair":
+                index = 0;
+                while(rollScores[6][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    int twos = 0;
+                    for(int i = 0; i < organizedDice.length; i++)
+                    {
+                        if(organizedDice[i] >= 2)
+                            twos++;
+                    }
+                    if(twos > 2)
+                    {
+                        rollScores[6][index] = diceTotal;
+                        return rollScores[6][index];
+                    }
+                    else
+                    {
+                        rollScores[6][index] = 0;
+                        return 0;
+                    }
+                }
                 break;
             case "three of a kind":
+                index = 0;
+                while(rollScores[7][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    for(int i = 0; i < organizedDice.length; i++)
+                    {
+                        if(organizedDice[i] >= 2)
+                        {
+                            rollScores[7][index] = diceTotal + 10;
+                            return rollScores[7][index];
+                        }
+                    }
+                    rollScores[7][index] = 0;
+                    return 0;
+                }
                 break;
             case "four straight":
                 break;
