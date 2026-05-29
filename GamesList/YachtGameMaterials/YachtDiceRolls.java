@@ -29,12 +29,13 @@ public class YachtDiceRolls {
         return categorize;
     }
 
-    public int ScoreRoll(String category, int[] roll) {
+    public int ScoreRoll(String category, int[] roll, int diceTotal) {
         int[] organizedDice = GetDiceNums(roll);
+        int index = 0;
         switch(category)
         {
             case "ones":
-                int index = 0;
+                index = 0;
                 while(rollScores[0][index] == -1)
                     index++;
                 if(index < rounds)
@@ -44,14 +45,54 @@ public class YachtDiceRolls {
                 }
                 break;
             case "twos":
+                index = 0;
+                while(rollScores[1][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[1][index] = organizedDice[1] * 2;
+                    return rollScores[1][index];
+                }
                 break;
             case "threes":
+                index = 0;
+                while(rollScores[2][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[2][index] = organizedDice[2] * 3;
+                    return rollScores[2][index];
+                }
                 break;
             case "fours":
+                index = 0;
+                while(rollScores[3][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[3][index] = organizedDice[3] * 4;
+                    return rollScores[3][index];
+                }
                 break;
             case "fives":
+                index = 0;
+                while(rollScores[4][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[4][index] = organizedDice[4] * 5;
+                    return rollScores[4][index];
+                }
                 break;
             case "sixes":
+                index = 0;
+                while(rollScores[5][index] == -1)
+                    index++;
+                if(index < rounds)
+                {
+                    rollScores[5][index] = organizedDice[5] * 6;
+                    return rollScores[5][index];
+                }
                 break;
             case "two pair":
                 break;
