@@ -32,6 +32,23 @@ public class YachtGameController {
             case "roll": case "r": case "": case "roll the dice":
                 Roll(forbiddenRolls);
                 break;
+            case "ones": case "twos": case "threes": case "fours": case "fives": case "sixes": case "two pair": case "free": case "yacht": case "full house":
+                AssignCategory(playString);
+                break;
+            case "three of a kind": case "four of a kind":
+                AssignCategory(playString);
+                break;
+            case "four straight": case "small straight":
+                AssignCategory("four straight");
+                break;
+            case "five straight": case "large straight": case "full straght":
+                AssignCategory("five straight");
+                break;
+            case "current score":
+                System.out.println("Your current score is " + score);
+            default:
+                System.out.println("Invalid command.");
+                break;
         }
     }
 
