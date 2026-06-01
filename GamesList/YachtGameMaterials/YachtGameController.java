@@ -10,10 +10,13 @@ public class YachtGameController {
     private int rollsInARow;
     private YachtDiceRolls yachtScores;
 
+    public boolean[] forbiddenRolls;
+
     public YachtGameController()
     {
         dice = new GameDice[6];
         dieValues = new int[6];
+        forbiddenRolls = new boolean[6];
         rollsInARow = 0;
         yachtScores = new YachtDiceRolls(1);
         score = 0;
@@ -24,8 +27,12 @@ public class YachtGameController {
     }
 
     public void ParseInput(String playString) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ParseInput'");
+        switch(playString)
+        {
+            case "roll": case "r": case "": case "roll the dice":
+                Roll(forbiddenRolls);
+                break;
+        }
     }
 
     public boolean CheckGameOver() {
@@ -53,6 +60,7 @@ public class YachtGameController {
         int rollScore = yachtScores.ScoreRoll(category, dieValues, TotalAllDice());
         if(rollScore >= 0)
         {
+            forbiddenRolls = new boolean[6];
             score += rollScore;
             rollsInARow = 0;
             return true;
@@ -60,7 +68,7 @@ public class YachtGameController {
         return false;
     }
 
-    public void Roll(String forbidden)
+    public void Roll(boolean[] forbidden)
     {
         if(rollsInARow >= 3)
         {
@@ -69,11 +77,12 @@ public class YachtGameController {
         }
         for(int i = 0; i <= 5; i++)
         {
-            if(!forbidden.contains(""+i))
+            if(!forbidden[i])
             {
                 dice[i].RollDice();
             }
         }
+        forbiddenRolls = new boolean[6];
         rollsInARow++;
         if(rollsInARow == 3)
         {

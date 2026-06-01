@@ -18,9 +18,33 @@ public class YachtGame {
         {
             System.out.println("Roll the dice, or quit to end the game");
             playString = menuPrompt.nextLine().toLowerCase();
-            if(!playString.equals("quit"))
+            if(!playString.equals("quit") && !playString.equals("lock"))
             {
                 gameInfo.ParseInput(playString);
+            }
+            else if(playString.equals("lock"))
+            {
+                System.out.println("Which dice do you wish to lock? Enter the position numbers from 1 to 6");
+                String lockString = menuPrompt.nextLine().toLowerCase();
+                try{
+                    int forbiddenNums = Integer.parseInt(lockString);
+                    if(forbiddenNums >= 100000)
+                    {
+                        throw new Exception("Too high a number");
+                    }
+                    while(forbiddenNums > 0)
+                    {
+                        int remainder = forbiddenNums % 10;
+                        gameInfo.forbiddenRolls[remainder] = true;
+                        forbiddenNums /= 10;
+                    }
+                }
+                catch(Exception exception)
+                {
+                    System.out.println("Invalid input. Type in up to 5 different numbers from 1 to 6.");
+                }
+                
+                
             }
         }
 
