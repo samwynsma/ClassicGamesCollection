@@ -16,7 +16,12 @@ public class YachtGame {
 
         while(!playString.equals("quit") && !gameInfo.CheckGameOver())
         {
+            System.out.println("Roll the dice, or quit to end the game");
             playString = menuPrompt.nextLine().toLowerCase();
+            if(!playString.equals("quit"))
+            {
+                gameInfo.ParseInput(playString);
+            }
         }
 
         System.out.println("Your final score was " + gameInfo.GetScore());
