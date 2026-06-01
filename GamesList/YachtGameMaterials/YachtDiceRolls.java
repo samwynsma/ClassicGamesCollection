@@ -142,6 +142,29 @@ public class YachtDiceRolls {
                 {
                     index++;
                 }
+                if(index < rounds)
+                {
+                    boolean hasStraight = false;
+                    if(organizedDice[0] >= 1 && organizedDice[1] >= 1 && organizedDice[2] >= 1 && organizedDice[3] >= 1)
+                    {
+                        hasStraight = true;
+                    }
+                    if(organizedDice[1] >= 1 && organizedDice[2] >= 1 && organizedDice[3] >= 1 && organizedDice[4] >= 1)
+                    {
+                        hasStraight = true;
+                    }
+                    if(organizedDice[2] >= 1 && organizedDice[3] >= 1 && organizedDice[4] >= 1 && organizedDice[5] >= 1)
+                    {
+                        hasStraight = true;
+                    }
+                    if(hasStraight)
+                    {
+                        rollScores[8][index] = 25;
+                        return 25;
+                    }
+                    rollScores[8][index] = 0;
+                    return 0;
+                }
                 break;
             case "five straight":
                 break;
