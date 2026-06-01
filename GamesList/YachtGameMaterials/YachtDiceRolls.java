@@ -36,7 +36,7 @@ public class YachtDiceRolls {
         {
             case "ones":
                 index = 0;
-                while(rollScores[0][index] == -1)
+                while(rollScores[0][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -46,7 +46,7 @@ public class YachtDiceRolls {
                 break;
             case "twos":
                 index = 0;
-                while(rollScores[1][index] == -1)
+                while(rollScores[1][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -56,7 +56,7 @@ public class YachtDiceRolls {
                 break;
             case "threes":
                 index = 0;
-                while(rollScores[2][index] == -1)
+                while(rollScores[2][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -66,7 +66,7 @@ public class YachtDiceRolls {
                 break;
             case "fours":
                 index = 0;
-                while(rollScores[3][index] == -1)
+                while(rollScores[3][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -76,7 +76,7 @@ public class YachtDiceRolls {
                 break;
             case "fives":
                 index = 0;
-                while(rollScores[4][index] == -1)
+                while(rollScores[4][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -86,7 +86,7 @@ public class YachtDiceRolls {
                 break;
             case "sixes":
                 index = 0;
-                while(rollScores[5][index] == -1)
+                while(rollScores[5][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -96,7 +96,7 @@ public class YachtDiceRolls {
                 break;
             case "two pair":
                 index = 0;
-                while(rollScores[6][index] == -1)
+                while(rollScores[6][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -120,7 +120,7 @@ public class YachtDiceRolls {
                 break;
             case "three of a kind":
                 index = 0;
-                while(rollScores[7][index] == -1)
+                while(rollScores[7][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -137,12 +137,17 @@ public class YachtDiceRolls {
                 }
                 break;
             case "four straight":
+                index = 0;
+                while(rollScores[8][index] != -1)
+                {
+                    index++;
+                }
                 break;
             case "five straight":
                 break;
             case "full house":
                 index = 0;
-                while(rollScores[10][index] == -1)
+                while(rollScores[10][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -166,7 +171,7 @@ public class YachtDiceRolls {
                 break;
             case "four of a kind":
                 index = 0;
-                while(rollScores[11][index] == -1)
+                while(rollScores[11][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -184,7 +189,7 @@ public class YachtDiceRolls {
                 break;
             case "free":
                 index = 0;
-                while(rollScores[12][index] == -1)
+                while(rollScores[12][index] != -1)
                     index++;
                 if(index < rounds)
                 {
@@ -194,7 +199,7 @@ public class YachtDiceRolls {
                 break;
             case "yacht":
                 index = 0;
-                while(rollScores[13][index] == -1)
+                while(rollScores[13][index] != -1)
                     index++;
                 if(index < rounds)
                 {
