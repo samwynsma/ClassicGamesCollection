@@ -14,9 +14,9 @@ public class YachtGameController {
 
     public YachtGameController()
     {
-        dice = new GameDice[6];
-        dieValues = new int[6];
-        forbiddenRolls = new boolean[6];
+        dice = new GameDice[5];
+        dieValues = new int[5];
+        forbiddenRolls = new boolean[5];
         rollsInARow = 0;
         yachtScores = new YachtDiceRolls(1);
         score = 0;
@@ -31,6 +31,7 @@ public class YachtGameController {
         {
             case "roll": case "r": case "": case "roll the dice":
                 Roll(forbiddenRolls);
+                System.out.println("Dice roll result: " + this.DisplayDice());
                 break;
             case "ones": case "twos": case "threes": case "fours": case "fives": case "sixes": case "two pair": case "free": case "yacht": case "full house":
                 AssignCategory(playString);
@@ -80,6 +81,14 @@ public class YachtGameController {
             forbiddenRolls = new boolean[6];
             score += rollScore;
             rollsInARow = 0;
+            if(rollScore > 0)
+            {
+                System.out.println("Your " + category + " roll scores you " + rollScore + " points");
+            }
+            else
+            {
+                System.out.println("Tough luck: 0 points.");
+            }
             return true;
         }
         return false;
@@ -92,11 +101,11 @@ public class YachtGameController {
             System.out.println("You have rolled the dice three times in a row. Please select a score category before continuing.");
             return;
         }
-        for(int i = 0; i <= 5; i++)
+        for(int i = 0; i <= 4; i++)
         {
             if(!forbidden[i])
             {
-                dice[i].RollDice();
+                dieValues[i] = dice[i].RollDice();
             }
         }
         forbiddenRolls = new boolean[6];
@@ -120,6 +129,16 @@ public class YachtGameController {
         return total;
     }
 
+    public String DisplayDice(){
+        StringBuilder dice = new StringBuilder("");
+        for(int i = 0; i < dieValues.length; i++)
+        {
+            dice.append(dieValues[i]);
+            if(i + 1 < dieValues.length)
+                dice.append(" ");
+        }
+        return dice.toString();
+    }
     
 
 }

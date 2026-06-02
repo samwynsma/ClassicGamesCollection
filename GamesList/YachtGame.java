@@ -28,23 +28,21 @@ public class YachtGame {
                 String lockString = menuPrompt.nextLine().toLowerCase();
                 try{
                     int forbiddenNums = Integer.parseInt(lockString);
-                    if(forbiddenNums >= 100000)
+                    if(forbiddenNums >= 10000)
                     {
                         throw new Exception("Too high a number");
                     }
                     while(forbiddenNums > 0)
                     {
                         int remainder = forbiddenNums % 10;
-                        gameInfo.forbiddenRolls[remainder] = true;
+                        gameInfo.forbiddenRolls[remainder-1] = true;
                         forbiddenNums /= 10;
                     }
                 }
                 catch(Exception exception)
                 {
-                    System.out.println("Invalid input. Type in up to 5 different numbers from 1 to 6.");
+                    System.out.println("Invalid input. Type in up to 4 different numbers from 1 to 5.");
                 }
-                
-                
             }
         }
 
