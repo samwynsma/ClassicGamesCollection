@@ -1,5 +1,7 @@
 package GamesList.YachtGameMaterials;
 
+import java.util.*;
+
 import GamesList.ToolsForMultipleGames.GameDice;
 
 public class YachtGameController {
@@ -47,10 +49,26 @@ public class YachtGameController {
                 break;
             case "current score":
                 System.out.println("Your current score is " + score);
+                break;
+            case "valid moves":
+                System.out.println("Your current valid moves are:");
+                List<String> validMoves = GetValidMoves();
+                for(int i = 0; i < validMoves.size(); i++)
+                {
+                    System.out.println(validMoves.get(i));
+                }
+                break;
+            case "my dice":
+                System.out.println("Your current dice are " + DisplayDice());
+                break;
             default:
                 System.out.println("Invalid command.");
                 break;
         }
+    }
+
+    private List<String> GetValidMoves() {
+        return yachtScores.ValidMoves();
     }
 
     public boolean CheckGameOver() {
@@ -91,6 +109,7 @@ public class YachtGameController {
             }
             return true;
         }
+        System.out.println("You have already used that combination. Try another combination with " + DisplayDice());
         return false;
     }
 

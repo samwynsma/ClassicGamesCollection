@@ -1,5 +1,8 @@
 package GamesList.YachtGameMaterials;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class YachtDiceRolls {
 
 
@@ -264,6 +267,39 @@ public class YachtDiceRolls {
                 break;
         }
         return -1;
+    }
+
+    public List<String> ValidMoves() {
+        List<String> validMoves = new ArrayList<String>();
+        if(rollScores[0][rounds-1] == -1)
+            validMoves.add("ones");
+        if(rollScores[1][rounds-1] == -1)
+            validMoves.add("twos");
+        if(rollScores[2][rounds-1] == -1)
+            validMoves.add("threes");
+        if(rollScores[3][rounds-1] == -1)
+            validMoves.add("fours");
+        if(rollScores[4][rounds-1] == -1)
+            validMoves.add("fives");
+        if(rollScores[5][rounds-1] == -1)
+            validMoves.add("sixes");
+        if(rollScores[6][rounds-1] == -1)
+            validMoves.add("two pair");
+        if(rollScores[7][rounds-1] == -1)
+            validMoves.add("three of a kind");
+        if(rollScores[8][rounds-1] == -1)
+            validMoves.add("four straight");
+        if(rollScores[9][rounds-1] == -1)
+            validMoves.add("five straight");
+        if(rollScores[10][rounds-1] == -1)
+            validMoves.add("full house");
+        if(rollScores[11][rounds-1] == -1)
+            validMoves.add("four of a kind");
+        if(rollScores[12][rounds-1] == -1)
+            validMoves.add("free");
+        if(rollScores[13][rounds-1] == -1)
+            validMoves.add("yacht");
+        return validMoves;
     }
 
 }
