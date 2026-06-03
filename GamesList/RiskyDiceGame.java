@@ -28,8 +28,11 @@ public class RiskyDiceGame {
         RiskyDiceGameController gameInfo = new RiskyDiceGameController(players);
         while(!playString.equals("quit") && !gameInfo.IsGameOver())
         {
-            System.out.println("Do you want to continue, player " + gameInfo.GetCurrentPlayer() + "? Type roll to continue or pass to stop. Type quit to end the game early.");
+            System.out.println("Do you want to continue, player " + gameInfo.GetCurrentPlayer() + "? (Type roll to continue or pass to stop. Type quit to end the game early.)");
+            playString = menuPrompt.nextLine().toLowerCase();
+            gameInfo.ParseInput(playString);
         }
+        System.out.println(gameInfo.DetermineWinner() + " is/are the winner(s).");
     }
     
 }
