@@ -5,11 +5,18 @@ public class RiskyDiceGameController {
     private int[] playerScores;
     private int players;
     private int currentPlayer;
+    private int currentDie;
+    private int currentRolls;
+    
+    public RiskyDiceRolls diceRolls;
 
     public RiskyDiceGameController(int players) {
         this.players = players;
         this.playerScores = new int[players];
         this.currentPlayer = 1;
+        this.currentDie = 1;
+        this.currentRolls = 0;
+        this.diceRolls = new RiskyDiceRolls();
     }
 
     public boolean IsGameOver()
@@ -44,8 +51,28 @@ public class RiskyDiceGameController {
     }
 
     public void ParseInput(String playString) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ParseInput'");
+        switch(playString)
+        {
+            case "score":
+                System.out.println("Your current score is " + GetCurrentScore());
+                break;
+            case "stop":
+                currentPlayer++;
+                currentDie = 1;
+                currentRolls = 0;
+                break;
+            case "roll":
+                playerScores[currentPlayer-1] += diceRolls.RollDice(currentDie);
+                if(diceRolls.HasLost())
+                {
+                    playerScores[currentPlayer-1] = 0;
+                    currentPlayer++;
+                    currentDie = 1;
+                    currentRolls = 0;
+                }
+            case "quit":
+                break;
+        }
     }
     
 }
