@@ -2,8 +2,8 @@ package GamesList.RiskyDiceMaterials;
 
 public class RiskyDiceGameController {
 
-    private int[] playerScores;
-    private int players;
+    private final int[] playerScores;
+    private final int players;
     private int currentPlayer;
     private int currentDie;
     private int currentRolls;
