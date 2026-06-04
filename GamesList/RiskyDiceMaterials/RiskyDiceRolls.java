@@ -1,11 +1,14 @@
 package GamesList.RiskyDiceMaterials;
 
 import GamesList.ToolsForMultipleGames.GameDice;
+import java.util.Random;
 
 public class RiskyDiceRolls {
 
     public boolean isLoss;
     public boolean canAdvance;
+    public boolean multiplier;
+    public boolean divider;
     private final GameDice[] diceSet;
 
     public RiskyDiceRolls(){
@@ -17,6 +20,8 @@ public class RiskyDiceRolls {
         diceSet[4] = new GameDice(20);
         isLoss = false;
         canAdvance = false;
+        multiplier = false;
+        divider = false;
     }
 
     public int RollDice(int currentDie) {
@@ -31,7 +36,36 @@ public class RiskyDiceRolls {
 
     private int DieOne() {
         int rollValue = diceSet[0].RollDice();
-        return rollValue;
+        int score = 0;
+        Random rand = new Random();
+        switch(rollValue)
+        {
+            case 1 -> {
+                isLoss = true;
+                System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose.");
+            }
+            case 2 -> {
+                score = - (rand.nextInt(5) + 1);
+                System.out.println("You rolled a tiny loss. That means that you lost " + score + " points.");
+            }
+            case 3 -> {
+                score = rand.nextInt(5) + 1;
+                System.out.println("You rolled a tiny gain. That means that you gained " + score + " points.");
+            }
+            case 4 -> {
+                score = rand.nextInt(10) + 5;
+                System.out.println("You rolled a small gain. That means that you gained " + score + " points.");
+            }
+            case 5 -> {
+                score++;
+                System.out.println("You rolled a single point gain. You gained 1 point.");
+            }
+            case 6 -> {
+                canAdvance = true;
+                System.out.println("You rolled an advance. That means that you can advance to the next die whenever you want.");
+            }
+        }
+        return score;
     }
 
     private int DieTwo(){
