@@ -62,13 +62,27 @@ public class RiskyDiceGameController {
                 currentRolls = 0;
                 break;
             case "roll":
-                playerScores[currentPlayer-1] += diceRolls.RollDice(currentDie);
+                int adjustmentValue = diceRolls.RollDice(currentDie);
                 if(diceRolls.HasLost())
                 {
                     playerScores[currentPlayer-1] = 0;
                     currentPlayer++;
                     currentDie = 1;
                     currentRolls = 0;
+                }
+                else if(!diceRolls.multiplier && !diceRolls.divider)
+                {
+                    playerScores[currentPlayer-1] += adjustmentValue;
+                }
+                else if(diceRolls.multiplier)
+                {
+                    diceRolls.multiplier = false;
+                    playerScores[currentPlayer-1] *= adjustmentValue;
+                }
+                else if(diceRolls.divider)
+                {
+                    diceRolls.divider = false;
+                    playerScores[currentPlayer-1] /= adjustmentValue;
                 }
                 break;
             case "advance":
@@ -77,6 +91,12 @@ public class RiskyDiceGameController {
                     if(currentDie == 5)
                     {
                         System.out.println("Cannot advance: on final die already.");
+                    }
+                    else
+                    {
+                        currentDie++;
+                        currentRolls = (0 - (5 * (currentDie-1)));
+                        diceRolls.SetAdvance(false);
                     }
                 }
             case "quit":

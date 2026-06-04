@@ -27,10 +27,21 @@ public class RiskyDiceRolls {
     public int RollDice(int currentDie) {
         switch(currentDie)
         {
-            case 1:
+            case 1 -> {
                 return DieOne();
-            default:
+            }
+            case 2 -> {
+                return DieTwo();
+            }
+            case 3 -> {
+                return DieThree();
+            }
+            case 4 -> {
+                return DieFour();
+            }
+            default -> {
                 return DieFive();
+            }
         }
     }
 
@@ -69,6 +80,7 @@ public class RiskyDiceRolls {
     }
 
     private int DieTwo(){
+        int rollValue = diceSet[1].RollDice();
         return 0;
     }
 
@@ -91,6 +103,10 @@ public class RiskyDiceRolls {
 
     public boolean CanAdvance(){
         return canAdvance;
+    }
+
+    public void SetAdvance(boolean b) {
+        canAdvance = b;
     }
 
 }
