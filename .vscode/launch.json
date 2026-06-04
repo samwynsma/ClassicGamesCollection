@@ -5,6 +5,13 @@
             "name": "MainMenu",
             "request": "launch",
             "mainClass": "MainMenu",
+            "projectName": "ClassicGamesCollection_f8933830"
+        },
+        {
+            "type": "java",
+            "name": "MainMenu",
+            "request": "launch",
+            "mainClass": "MainMenu",
             "projectName": "ClassicGamesCollection_538ae0ef"
         },
         {

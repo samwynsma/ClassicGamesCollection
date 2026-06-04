@@ -70,6 +70,15 @@ public class RiskyDiceGameController {
                     currentDie = 1;
                     currentRolls = 0;
                 }
+                break;
+            case "advance":
+                if(currentRolls >= 10 || diceRolls.CanAdvance())
+                {
+                    if(currentDie == 5)
+                    {
+                        System.out.println("Cannot advance: on final die already.");
+                    }
+                }
             case "quit":
                 break;
         }
