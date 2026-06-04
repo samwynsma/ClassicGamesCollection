@@ -81,7 +81,44 @@ public class RiskyDiceRolls {
 
     private int DieTwo(){
         int rollValue = diceSet[1].RollDice();
-        return 0;
+        int score = 0;
+        Random rand = new Random();
+        switch(rollValue)
+        {
+            case 1 -> {
+                isLoss = true;
+                System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose.");
+            }
+            case 2 -> {
+                score++;
+                System.out.println("You rolled a single point gain. You gained 1 point.");
+            }
+            case 3 -> {
+                score = - (rand.nextInt(5) + 1);
+                System.out.println("You rolled a tiny loss. That means that you lost " + score + " points.");
+            }
+            case 4 -> {
+                score = - (rand.nextInt(10) + 5);
+                System.out.println("You rolled a small loss. That means that you lost " + score + " points.");
+            }
+            case 5 -> {
+                score = rand.nextInt(10) + 5;
+                System.out.println("You rolled a small gain. That means that you gained " + score + " points.");
+            }
+            case 6 -> {
+                score = rand.nextInt(15) + 20;
+                System.out.println("You rolled a medium gain. That means that you gained " + score + " points.");
+            }
+            case 7 -> {
+                score = 50;
+                System.out.println("You got the tier 1 jackpot! You scored 50 points!");
+            }
+            case 8 -> {
+                canAdvance = true;
+                System.out.println("You rolled an advance. That means that you can advance to the next die whenever you want.");
+            }
+        }
+        return score;
     }
 
     private int DieThree(){
