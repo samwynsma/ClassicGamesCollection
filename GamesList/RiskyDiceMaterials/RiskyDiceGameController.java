@@ -161,9 +161,9 @@ public class RiskyDiceGameController {
         }
 
         Arrays.sort(scoreboard, (a, b) -> Integer.compare(a[0], b[0]));
-        for(int i = 0; i < scoreboard.length; i++)
+        for(int i = 1; i <= scoreboard.length; i++)
         {
-            System.out.println("#" + (i+1) + ": Player " + scoreboard[i][1] + " with " + scoreboard[i][0] + " points.");
+            System.out.println("#" + i + ": Player " + (scoreboard[scoreboard.length-i][1] + 1) + " with " + scoreboard[scoreboard.length-i][0] + " points.");
         }
     }
     
