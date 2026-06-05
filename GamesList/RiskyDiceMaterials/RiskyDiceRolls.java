@@ -442,7 +442,7 @@ public class RiskyDiceRolls {
     }
 
     private int SecretDie() {
-        int rollValue = diceSet[4].RollDice();
+        int rollValue = diceSet[5].RollDice();
         int score = 0;
         Random rand = new Random();
         switch(rollValue){

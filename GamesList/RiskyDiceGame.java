@@ -33,6 +33,7 @@ public class RiskyDiceGame {
             gameInfo.ParseInput(playString);
         }
         System.out.println(gameInfo.DetermineWinner() + " is/are the winner(s).");
+        gameInfo.DisplayLeaderboard();
     }
     
 }

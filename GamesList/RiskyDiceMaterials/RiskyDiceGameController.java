@@ -1,5 +1,7 @@
 package GamesList.RiskyDiceMaterials;
 
+import java.util.Arrays;
+
 public class RiskyDiceGameController {
 
     private final int[] playerScores;
@@ -53,15 +55,14 @@ public class RiskyDiceGameController {
     public void ParseInput(String playString) {
         switch(playString)
         {
-            case "score":
-                System.out.println("Player " + GetCurrentPlayer() + ", your current score is " + GetCurrentScore());
-                break;
-            case "stop":
+            case "score" -> System.out.println("Player " + GetCurrentPlayer() + ", your current score is " + GetCurrentScore());
+            case "stop" -> {
                 currentPlayer++;
                 currentDie = 1;
                 currentRolls = 0;
-                break;
-            case "roll":
+            }
+            case "roll" -> {
+                currentRolls++;
                 int adjustmentValue = diceRolls.RollDice(currentDie);
                 if(diceRolls.HasLost())
                 {
@@ -69,6 +70,8 @@ public class RiskyDiceGameController {
                     currentPlayer++;
                     currentDie = 1;
                     currentRolls = 0;
+                    diceRolls.isLoss = false;
+                    return;
                 }
                 else if(!diceRolls.multiplier && !diceRolls.divider)
                 {
@@ -84,7 +87,8 @@ public class RiskyDiceGameController {
                     diceRolls.divider = false;
                     playerScores[currentPlayer-1] /= adjustmentValue;
                 }
-                else if(diceRolls.setScore)
+                
+                if(diceRolls.setScore)
                 {
                     diceRolls.setScore = false;
                     playerScores[currentPlayer-1] = adjustmentValue;
@@ -111,8 +115,14 @@ public class RiskyDiceGameController {
                     currentDie = 6;
                     diceRolls.goToSecretDie = false;
                 }
-                break;
-            case "advance":
+
+                if(playerScores[currentPlayer - 1] < 0)
+                {
+                    playerScores[currentPlayer - 1] = 0;
+                    System.out.println("Score cannot go below zero");
+                }
+            }
+            case "advance" -> {
                 if(currentRolls >= 10 || diceRolls.CanAdvance())
                 {
                     if(currentDie >= 5)
@@ -123,18 +133,37 @@ public class RiskyDiceGameController {
                     {
                         currentDie++;
                         currentRolls = (0 - (5 * (currentDie-1)));
+                        System.out.println("Now you are on die #" + currentDie);
                         diceRolls.SetAdvance(false);
                     }
                 }
-            case "help":
-                System.out.println("Commands: \n \"Roll\" to roll the die. \n \"Stop\" to end your turn and keep your current score. \n \"Score\" to see your current score. \n \"Advance\" to advance to the next die if you have rolled enough times on the current die or rolled the right rolls to advance. \n \"Quit\" to quit the game.");
-                break;
-            case "cheat give me defense":
+                else
+                {
+                    System.out.println("Cannot advance. Either roll an advance, or roll enough times. You need to roll " + (10 - currentRolls) + " more times to get a free advance.");
+                }
+            }
+            case "help" -> System.out.println("Commands: \n \"Roll\" to roll the die. \n \"Stop\" to end your turn and keep your current score. \n \"Score\" to see your current score. \n \"Advance\" to advance to the next die if you have rolled enough times on the current die or rolled the right rolls to advance. \n \"Quit\" to quit the game.");
+            case "cheat give me defense" -> {
                 diceRolls.isDefended = true;
                 System.out.println("I hope that you're doing this to debug the game.");
-                break;
-            case "quit":
-                break;
+            }
+            case "quit" -> {
+            }
+        }
+    }
+
+    public void DisplayLeaderboard() {
+        int[][] scoreboard = new int[playerScores.length][2];
+        for(int i = 0; i < playerScores.length; i++)
+        {
+            scoreboard[i][0] = playerScores[i];
+            scoreboard[i][1] = i;
+        }
+
+        Arrays.sort(scoreboard, (a, b) -> Integer.compare(a[0], b[0]));
+        for(int i = 0; i < scoreboard.length; i++)
+        {
+            System.out.println("#" + (i+1) + ": Player " + scoreboard[i][1] + " with " + scoreboard[i][0] + " points.");
         }
     }
     
