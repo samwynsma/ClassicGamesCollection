@@ -11,6 +11,7 @@ public class RiskyDiceRolls {
     public boolean multiplier;
     public boolean divider;
     public boolean goToSecretDie;
+    public boolean everyOneElseGetsPoints;
     private final GameDice[] diceSet;
     private int secretDieCounter;
     public boolean setScore;
@@ -29,6 +30,7 @@ public class RiskyDiceRolls {
         multiplier = false;
         divider = false;
         goToSecretDie = false;
+        everyOneElseGetsPoints = false;
         secretDieCounter = 0;
     }
 
@@ -47,8 +49,14 @@ public class RiskyDiceRolls {
             case 4 -> {
                 return DieFour();
             }
-            default -> {
+            case 5 -> {
                 return DieFive();
+            }
+            case 6 -> {
+                return SecretDie();
+            }
+            default -> {
+                throw new IllegalStateException("Unexpected value: " + currentDie);
             }
         }
     }
@@ -363,19 +371,27 @@ public class RiskyDiceRolls {
                 System.out.println("You rolled the fourteenth number of the fibonacci sequence, but sadly, it is a loss die. You lose 377 points. Ouch.");
             }
             case 15 -> {
-                
+                System.out.println("You rolled a nothing. That means that nothing happens. There is no secret die.");
             }
             case 16 -> {
-
+                score = 50;
+                everyOneElseGetsPoints = true;
+                System.out.println("You rolled the charity die. You get nothing, while all the other players get 50 points. This means that everyone else has a better chance of beating you, even the people who have already lost. Too bad.");
             }
             case 17 -> {
-                
+                score++;
+                System.out.println("You rolled a single point gain. At this point in the game, that is probably next to nothing. If it isn't nothing, you are not doing very well and probably had more points at some time this game.");
             }
             case 18 -> {
+                score = 3;
+                multiplier = true;
+                System.out.println("Nice, you rolled a multiply by 3! Your score will be tripled! :)");
 
             }
             case 19 -> {
-
+                score = 3;
+                divider = true;
+                System.out.println("Oh no, you rolled a divide by 3! Your score will be cut to a third of what it was. :(");
             }
             case 20 -> {
                 secretDieCounter++;

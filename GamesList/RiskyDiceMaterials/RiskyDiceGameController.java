@@ -89,6 +89,24 @@ public class RiskyDiceGameController {
                     diceRolls.setScore = false;
                     playerScores[currentPlayer-1] = adjustmentValue;
                 }
+
+                if(diceRolls.everyOneElseGetsPoints)
+                {
+                    for(int i = 0; i < playerScores.length; i++)
+                    {
+                        if(i != currentPlayer-1)
+                        {
+                            playerScores[i] += adjustmentValue;
+                        }
+                    }
+                    diceRolls.everyOneElseGetsPoints = false;
+                }
+
+                if(diceRolls.goToSecretDie)
+                {
+                    currentDie = 6;
+                    diceRolls.goToSecretDie = false;
+                }
                 break;
             case "advance":
                 if(currentRolls >= 10 || diceRolls.CanAdvance())
