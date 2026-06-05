@@ -84,6 +84,11 @@ public class RiskyDiceGameController {
                     diceRolls.divider = false;
                     playerScores[currentPlayer-1] /= adjustmentValue;
                 }
+                else if(diceRolls.setScore)
+                {
+                    diceRolls.setScore = false;
+                    playerScores[currentPlayer-1] = adjustmentValue;
+                }
                 break;
             case "advance":
                 if(currentRolls >= 10 || diceRolls.CanAdvance())
