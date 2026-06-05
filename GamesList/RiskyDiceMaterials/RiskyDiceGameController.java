@@ -54,7 +54,7 @@ public class RiskyDiceGameController {
         switch(playString)
         {
             case "score":
-                System.out.println("Your current score is " + GetCurrentScore());
+                System.out.println("Player " + GetCurrentPlayer() + ", your current score is " + GetCurrentScore());
                 break;
             case "stop":
                 currentPlayer++;
@@ -115,7 +115,7 @@ public class RiskyDiceGameController {
             case "advance":
                 if(currentRolls >= 10 || diceRolls.CanAdvance())
                 {
-                    if(currentDie == 5)
+                    if(currentDie >= 5)
                     {
                         System.out.println("Cannot advance: on final die already.");
                     }
@@ -126,6 +126,13 @@ public class RiskyDiceGameController {
                         diceRolls.SetAdvance(false);
                     }
                 }
+            case "help":
+                System.out.println("Commands: \n \"Roll\" to roll the die. \n \"Stop\" to end your turn and keep your current score. \n \"Score\" to see your current score. \n \"Advance\" to advance to the next die if you have rolled enough times on the current die or rolled the right rolls to advance. \n \"Quit\" to quit the game.");
+                break;
+            case "cheat give me defense":
+                diceRolls.isDefended = true;
+                System.out.println("I hope that you're doing this to debug the game.");
+                break;
             case "quit":
                 break;
         }
