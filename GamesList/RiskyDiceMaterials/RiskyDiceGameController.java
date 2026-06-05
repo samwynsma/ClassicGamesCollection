@@ -98,6 +98,10 @@ public class RiskyDiceGameController {
                         {
                             playerScores[i] += adjustmentValue;
                         }
+                        else
+                        {
+                            playerScores[i] -= adjustmentValue;
+                        }
                     }
                     diceRolls.everyOneElseGetsPoints = false;
                 }

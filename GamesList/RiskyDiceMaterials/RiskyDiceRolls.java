@@ -68,8 +68,16 @@ public class RiskyDiceRolls {
         switch(rollValue)
         {
             case 1 -> {
-                isLoss = true;
-                System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                if(!isDefended){
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Either you are cheating, or you're in debug mode. If you are in debug mode, then here's a debug message: This idea for this game comes from the website Neopets. Back in the day, there was a game on the site called Dice-A-Roo. It was a simple game where you rolled a die and could gain or lose Neopoints and items. I don't have any items here, and the points here are just numbers, so I added a multiplayer feature to make it have some meaning.");
+                }
+                
             }
             case 2 -> {
                 score = - (rand.nextInt(5) + 1);
@@ -102,8 +110,15 @@ public class RiskyDiceRolls {
         switch(rollValue)
         {
             case 1 -> {
-                isLoss = true;
-                System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                if(!isDefended) {
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Either you are cheating, or you're in debug mode. If you are in debug mode, then here's a debug message: I can't seem to be able to display spades, clubs, hearts, or diamonds in the text box. If anyone knows how to do that, please tell me. I want to be able to make blackjack look nicer instead of having a bunch of weird symbols where the suits should be, or ?'s");
+                }
             }
             case 2 -> {
                 score++;
@@ -143,8 +158,15 @@ public class RiskyDiceRolls {
         Random rand = new Random();
         switch(rollValue){
             case 1 -> {
-                isLoss = true;
-                System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                if(!isDefended) {
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Either you're cheating, or you're in debug mode. If you are in debug mode, then here's a debug message: Alex needs to get a job. He needs to stop being lazy and leeching off of his parents. At least get a part time job or something, Alex. You have a damn degree and a damn computer. You can do something. This isn't the newspaper era anymore.");
+                }
             }
             case 2 -> {
                 score = rand.nextInt(10) + 5;
@@ -379,8 +401,16 @@ public class RiskyDiceRolls {
                 System.out.println("You rolled the charity die. You get nothing, while all the other players get 50 points. This means that everyone else has a better chance of beating you, even the people who have already lost. Too bad.");
             }
             case 17 -> {
-                score++;
-                System.out.println("You rolled a single point gain. At this point in the game, that is probably next to nothing. If it isn't nothing, you are not doing very well and probably had more points at some time this game.");
+                if(isDefended)
+                {
+                    score = 100;
+                    System.out.println("You rolled a defense, but you were already defended. Here's one hundred points.");
+                }
+                else
+                {
+                    isDefended = true;
+                    System.out.println("You rolled a defense. That means that you are defended against one loss. If you roll a loss, you'll survive one time. Think of this as a safety net.");
+                }
             }
             case 18 -> {
                 score = 3;
@@ -412,7 +442,79 @@ public class RiskyDiceRolls {
     }
 
     private int SecretDie() {
-        return 0; // Will be implemented later.
+        int rollValue = diceSet[4].RollDice();
+        int score = 0;
+        Random rand = new Random();
+        switch(rollValue){
+            case 1 -> {
+                if(!isDefended) {
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. However, since you were defended, you are able to survive one loss. Your defense has been used up, so be careful! No defenders can show up on the secret die, so you have no more chances to be defended.");
+                }
+            }
+            case 2 -> {
+                score = 5;
+                multiplier = true;
+                System.out.println("Nice, you rolled a multiply by 5! Your score will be multiplied by 5! :)");
+            }
+            case 3 -> {
+                score = 5;
+                divider = true;
+                System.out.println("Oh no, you rolled a divide by 5! Your score will be divided by 5! :(");
+            }
+            case 4 -> {
+                score = 10;
+                multiplier = true;
+                System.out.println("Nice, you rolled a multiply by 10! Your score will be multiplied by 10! :)");
+            }
+            case 5 -> {
+                score = 10;
+                divider = true;
+                System.out.println("Oh no, you rolled a divide by 10! Your score will be divided by 10! :(");
+            }
+            case 6 -> {
+                score = rand.nextInt(1001) - 500;
+                if(score < 0)
+                {
+                    System.out.println("You rolled the ultimate randomizer. That means that you either gained or lost a random amount of points between 0 and 500. In this case, you lost " + score + " points. Not great.");
+                }
+                else
+                {
+                    System.out.println("You rolled the ultimate randomizer. That means that you either gained or lost a random amount of points between 0 and 500. In this case, you gained " + score + " points. Nice!");
+                }
+            }
+            case 7 -> {
+                score = 100;
+                everyOneElseGetsPoints = true;
+                System.out.println("It's secret charity time! Too bad you get nothing.");
+            }
+            case 8 -> {
+                score = 3333;
+                System.out.println("The ultimate jackpot of 3333 points is now yours! Congratulations!");
+            }
+            case 9 -> {
+                score = 2026;
+                setScore = true;
+                System.out.println("You rolled the year that this game was first conceived. Your score is now set to 2026. This could be good or bad depending on your current score.");
+            }
+            case 10 -> {
+                if(!isDefended) {
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. However, since you were defended, you are able to survive one loss. Your defense has been used up, so be careful! No defenders can show up on the secret die, so you have no more chances to be defended.");
+                }
+            }
+        }
+        return score;
     }
 
     public boolean HasLost() {
