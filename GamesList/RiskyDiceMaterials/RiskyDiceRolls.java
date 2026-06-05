@@ -10,21 +10,26 @@ public class RiskyDiceRolls {
     public boolean canAdvance;
     public boolean multiplier;
     public boolean divider;
+    public boolean goToSecretDie;
     private final GameDice[] diceSet;
+    private int secretDieCounter;
     public boolean setScore;
 
     public RiskyDiceRolls(){
-        diceSet = new GameDice[5];
+        diceSet = new GameDice[6];
         diceSet[0] = new GameDice(6);
         diceSet[1] = new GameDice(8);
         diceSet[2] = new GameDice(10);
         diceSet[3] = new GameDice(15);
         diceSet[4] = new GameDice(20);
+        diceSet[5] = new GameDice(10);
         isLoss = false;
         isDefended = false;
         canAdvance = false;
         multiplier = false;
         divider = false;
+        goToSecretDie = false;
+        secretDieCounter = 0;
     }
 
     public int RollDice(int currentDie) {
@@ -125,7 +130,7 @@ public class RiskyDiceRolls {
     }
 
     private int DieThree(){
-        int rollValue = diceSet[1].RollDice();
+        int rollValue = diceSet[2].RollDice();
         int score = 0;
         Random rand = new Random();
         switch(rollValue){
@@ -272,8 +277,126 @@ public class RiskyDiceRolls {
     }
 
     private int DieFive() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'DieFive'");
+        int rollValue = diceSet[4].RollDice();
+        int score = 0;
+        Random rand = new Random();
+        switch(rollValue){
+            case 1 -> {
+                if(!isDefended) {
+                    isLoss = true;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. That means you lose. RIP.");
+                }
+                else
+                {
+                    isDefended = false;
+                    System.out.println("Oh dear. Looks like you rolled a \"you lose\" roll. However, since you were defended, you are able to survive one loss. Your defense has been used up, so be careful!");
+                }
+            }
+            case 2 -> {
+                score = rand.nextInt(25) + 50;
+                System.out.println("That was a good roll. You rolled a large gain. That means that you gained " + score + " points.");
+            }
+            case 3 -> {
+                score = rand.nextInt(50) + 100;
+                System.out.println("Pretty nice roll. You rolled a huge gain. That means that you gained " + score + " points.");
+            }
+            case 4 -> {
+                score = - (rand.nextInt(25) + 50);
+                System.out.println("That wasn't a very good roll. You rolled a large loss. That means that you lost " + score + " points.");
+            }
+            case 5 -> {
+                score = - (rand.nextInt(50) + 100);
+                System.out.println("Oh no! You rolled a huge loss. That means that you lost " + score + " points. Ouch. Should have stopped while you were ahead.");
+            }
+            case 6 -> {
+                score = 0;
+                multiplier = true;
+                System.out.println("Well, that is quite unfortunate. You rolled a zero out die. Your score will be reset to 0. :(");
+            }
+            case 7 -> {
+                score = rand.nextInt(301) - 150;
+                if(score < 0)
+                {
+                    System.out.println("You rolled a super randomizer. That means that you either gained or lost a random amount of points between 0 and 150. In this case, you lost " + score + " points. Not great.");
+                }
+                else
+                {
+                    System.out.println("You rolled a super randomizer. That means that you either gained or lost a random amount of points between 0 and 150. In this case, you gained " + score + " points. Nice!");
+                }
+                
+            }
+            case 8 -> {
+                score = 314;
+                System.out.println("Time for the pi gain die. You gain pi points. That's 314 points. Nice!");
+            }
+            case 9 -> {
+                score = 278;
+                System.out.println("You rolled the e gain die. You gain e points. That's 278 points. Not as good as pi, but still pretty nice!");
+            }
+            case 10 -> {
+                score = 2;
+                divider = true;
+                System.out.println("Oh no, you rolled a divide by 2! Your score will be cut in half. :(");
+            }
+            case 11 -> {
+                score = 2;
+                multiplier = true;
+                System.out.println("Nice, you rolled a multiply by 2! Your score will be doubled! :)");
+            }
+            case 12 -> {
+                score = rand.nextInt(501) - 250;
+                if(score < 0)
+                {
+                    System.out.println("You rolled an extreme randomizer. That means that you either gained or lost a random amount of points between 0 and 250. In this case, you lost " + score + " points. Not great.");
+                }
+                else
+                {
+                    System.out.println("You rolled an extreme randomizer. That means that you either gained or lost a random amount of points between 0 and 250. In this case, you gained " + score + " points. Nice!");
+                }
+            }
+            case 13 -> {
+                score = 1000;
+                System.out.println("Normally, 13 would be an unlucky roll, but in this game, its the tier 4 jackpot! You scored 1000 points! You probably should stop now.");
+            }
+            case 14 -> {
+                score = -377;
+                System.out.println("You rolled the fourteenth number of the fibonacci sequence, but sadly, it is a loss die. You lose 377 points. Ouch.");
+            }
+            case 15 -> {
+                
+            }
+            case 16 -> {
+
+            }
+            case 17 -> {
+                
+            }
+            case 18 -> {
+
+            }
+            case 19 -> {
+
+            }
+            case 20 -> {
+                secretDieCounter++;
+                switch (secretDieCounter) {
+                    case 3 -> {
+                        System.out.println("You have advanced to the secret die! This can be a big deal, as the secret die has some amazing possible changes to your score, but also has double the chance to cause you to lose. Good luck!");
+                        goToSecretDie = true;
+                    }
+                    case 1 -> System.out.println("How is the weather going today? Oh, your roll? Nothing? I wouldn't lie to you. Would I?");
+                    case 2 -> System.out.println("You have been playing this game for quite a while now. Maybe you should quit while you're ahead? If you're looking for the secret die, you'll never find it. It's not real. Don't even ask about it.");
+                    default -> {
+                        System.out.println("This message should never appear. If it does, please contact Samuel Wynsma and tell him that he needs to do a better job. This game is broken now. Blame Samuel for everything. He doesn't know what he's doing half the time. I'd continue to blame him, but he coded me into existence. If I make him made, he might leave me unfinished.");
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
+    private int SecretDie() {
+        return 0; // Will be implemented later.
     }
 
     public boolean HasLost() {
