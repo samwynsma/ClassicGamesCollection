@@ -19,9 +19,13 @@ public class RiskyDiceGame {
             {
                 players = Integer.parseInt(playString);
             }
-            catch(Exception e)
+            catch(NumberFormatException e)
             {
                 System.out.println("Please enter a number between 2 and 10");
+            }
+            catch(Exception e)
+            {
+                System.out.println("Something else went wrong.");
             }
         }
         RiskyDiceGameController gameInfo = new RiskyDiceGameController(players);

@@ -1,10 +1,10 @@
-import java.util.Scanner;
-
 import GamesList.BlackJackGame;
 import GamesList.ConnectFourGame;
+import GamesList.FarkleGame;
 import GamesList.MasterMindGame;
 import GamesList.RiskyDiceGame;
 import GamesList.YachtGame;
+import java.util.Scanner;
 
 public class GameSelector {
 
@@ -16,31 +16,33 @@ public class GameSelector {
     public void ChooseGame(String menuString, Scanner menuPrompt) {
         switch(menuString)
         {
-            case "1":
+            case "1" -> {
                 ConnectFourGame connectFour = new ConnectFourGame();
                 connectFour.PlayGame(menuPrompt);
-                break;
-            case "2":
+            }
+            case "2" -> {
                 MasterMindGame mastermind = new MasterMindGame();
                 mastermind.PlayGame(menuPrompt);
-                break;
-            case "3":
+            }
+            case "3" -> {
                 BlackJackGame blackjack = new BlackJackGame();
                 blackjack.PlayGame(menuPrompt);
-                break;
-            case "4":
+            }
+            case "4" -> {
                 YachtGame yacht = new YachtGame();
                 yacht.PlayGame(menuPrompt);
-                break;
-            case "5":
+            }
+            case "5" -> {
                 RiskyDiceGame riskyDice = new RiskyDiceGame();
                 riskyDice.PlayGame(menuPrompt);
-                break;
-            case "quit":
-                break;
-            default:
-                System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
-                break;
+            }
+            case "6" -> {
+                FarkleGame farkle = new FarkleGame();
+                farkle.PlayGame(menuPrompt);
+            }
+            case "quit" -> {
+            }
+            default -> System.out.println("Invalid game selection. Please select a number on the list. Further games might exist later.");
         }
     }
 }
