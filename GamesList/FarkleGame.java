@@ -1,6 +1,8 @@
 package GamesList;
 import java.util.Scanner;
 
+import GamesList.FarkleMaterials.FarkleGameController;
+
 public class FarkleGame {
 
     public void PlayGame(Scanner menuPrompt) {
@@ -27,6 +29,30 @@ public class FarkleGame {
                 System.out.println(e.getMessage() + " something went wrong.");
             }
         }
+        while(minScore < 300 || minScore > 2500 || minScore % 100 != 0)
+        {
+            System.out.println("How many points is the minimum to get on the board as your first roll? Please select a number between 300 and 2500 that is divisible by 100. Only set it above 1000 if you are brave.");
+            playString = menuPrompt.nextLine().toLowerCase();
+            try
+            {
+                minScore = Integer.parseInt(playString);
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("Please type in a number between 300 and 2500, and make it divisible by 100");
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage() + " something went wrong.");
+            }
+        }
+        FarkleGameController gameInfo = new FarkleGameController(players, minScore);
+        while(!playString.equals("quit") && !gameInfo.IsGameOver())
+        {
+            break;
+        }
+        System.out.println("Game end has not been implemented yet.");
+        gameInfo.DisplayLeaderboard();
     }
 
 }
