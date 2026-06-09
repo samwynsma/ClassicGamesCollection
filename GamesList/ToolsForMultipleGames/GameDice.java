@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class GameDice {
 
-    private int maxRoll;
-    private int minRoll;
+    private final int maxRoll;
+    private final int minRoll;
 
     public GameDice(int i) {
         minRoll = 1;

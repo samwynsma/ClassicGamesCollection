@@ -73,7 +73,7 @@ public class CardDeck {
         {
             allCards.add(cards[i]);
         }
-        while(allCards.size() > 0)
+        while(!allCards.isEmpty())
         {
             int cardLoc = cardRandomizer.nextInt(allCards.size());
             String card = allCards.get(cardLoc);

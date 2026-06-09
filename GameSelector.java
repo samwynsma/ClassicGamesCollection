@@ -1,10 +1,11 @@
+import java.util.Scanner;
+
 import GamesList.BlackJackGame;
 import GamesList.ConnectFourGame;
 import GamesList.FarkleGame;
 import GamesList.MasterMindGame;
 import GamesList.RiskyDiceGame;
 import GamesList.YachtGame;
-import java.util.Scanner;
 
 public class GameSelector {
 

@@ -34,10 +34,10 @@ public class YachtDiceRolls {
 
     public int ScoreRoll(String category, int[] roll, int diceTotal) {
         int[] organizedDice = GetDiceNums(roll);
-        int index = 0;
+        int index;
         switch(category)
         {
-            case "ones":
+            case "ones" -> {
                 index = 0;
                 while(index < rounds && rollScores[0][index] != -1)
                     index++;
@@ -46,8 +46,8 @@ public class YachtDiceRolls {
                     rollScores[0][index] = organizedDice[0];
                     return rollScores[0][index];
                 }
-                break;
-            case "twos":
+            }
+            case "twos" -> {
                 index = 0;
                 while(index < rounds && rollScores[1][index] != -1)
                     index++;
@@ -56,8 +56,8 @@ public class YachtDiceRolls {
                     rollScores[1][index] = organizedDice[1] * 2;
                     return rollScores[1][index];
                 }
-                break;
-            case "threes":
+            }
+            case "threes" -> {
                 index = 0;
                 while(index < rounds && rollScores[2][index] != -1)
                     index++;
@@ -66,8 +66,8 @@ public class YachtDiceRolls {
                     rollScores[2][index] = organizedDice[2] * 3;
                     return rollScores[2][index];
                 }
-                break;
-            case "fours":
+            }
+            case "fours" -> {
                 index = 0;
                 while(index < rounds && rollScores[3][index] != -1)
                     index++;
@@ -76,8 +76,8 @@ public class YachtDiceRolls {
                     rollScores[3][index] = organizedDice[3] * 4;
                     return rollScores[3][index];
                 }
-                break;
-            case "fives":
+            }
+            case "fives" -> {
                 index = 0;
                 while(index < rounds && rollScores[4][index] != -1)
                     index++;
@@ -86,8 +86,8 @@ public class YachtDiceRolls {
                     rollScores[4][index] = organizedDice[4] * 5;
                     return rollScores[4][index];
                 }
-                break;
-            case "sixes":
+            }
+            case "sixes" -> {
                 index = 0;
                 while(index < rounds && rollScores[5][index] != -1)
                     index++;
@@ -96,8 +96,8 @@ public class YachtDiceRolls {
                     rollScores[5][index] = organizedDice[5] * 6;
                     return rollScores[5][index];
                 }
-                break;
-            case "two pair":
+            }
+            case "two pair" -> {
                 index = 0;
                 while(index < rounds && rollScores[6][index] != -1)
                     index++;
@@ -120,8 +120,8 @@ public class YachtDiceRolls {
                         return 0;
                     }
                 }
-                break;
-            case "three of a kind":
+            }
+            case "three of a kind" -> {
                 index = 0;
                 while(index < rounds && rollScores[7][index] != -1)
                     index++;
@@ -138,8 +138,8 @@ public class YachtDiceRolls {
                     rollScores[7][index] = 0;
                     return 0;
                 }
-                break;
-            case "four straight":
+            }
+            case "four straight" -> {
                 index = 0;
                 while(index < rounds && rollScores[8][index] != -1)
                 {
@@ -168,8 +168,8 @@ public class YachtDiceRolls {
                     rollScores[8][index] = 0;
                     return 0;
                 }
-                break;
-            case "five straight":
+            }
+            case "five straight" -> {
                 index = 0;
                 while(index < rounds && rollScores[9][index] != -1)
                 {
@@ -194,8 +194,8 @@ public class YachtDiceRolls {
                     rollScores[9][index] = 0;
                     return 0;
                 }
-                break;
-            case "full house":
+            }
+            case "full house" -> {
                 index = 0;
                 while(index < rounds && rollScores[10][index] != -1)
                     index++;
@@ -218,8 +218,8 @@ public class YachtDiceRolls {
                     rollScores[10][index] = 0;
                     return 0;
                 }
-                break;
-            case "four of a kind":
+            }
+            case "four of a kind" -> {
                 index = 0;
                 while(index < rounds && rollScores[11][index] != -1)
                     index++;
@@ -236,8 +236,8 @@ public class YachtDiceRolls {
                     rollScores[11][index] = 0;
                     return 0;
                 }
-                break;
-            case "free":
+            }
+            case "free" -> {
                 index = 0;
                 while(index < rounds && rollScores[12][index] != -1)
                     index++;
@@ -246,8 +246,8 @@ public class YachtDiceRolls {
                     rollScores[12][index] = diceTotal;
                     return rollScores[12][index];
                 }
-                break;
-            case "yacht":
+            }
+            case "yacht" -> {
                 index = 0;
                 while(index < rounds && rollScores[13][index] != -1)
                     index++;
@@ -264,13 +264,13 @@ public class YachtDiceRolls {
                     rollScores[13][index] = 0;
                     return 0;
                 }
-                break;
+            }
         }
         return -1;
     }
 
     public List<String> ValidMoves() {
-        List<String> validMoves = new ArrayList<String>();
+        List<String> validMoves = new ArrayList<>();
         if(rollScores[0][rounds-1] == -1)
             validMoves.add("ones");
         if(rollScores[1][rounds-1] == -1)
