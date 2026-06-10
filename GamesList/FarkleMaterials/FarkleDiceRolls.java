@@ -82,6 +82,8 @@ public class FarkleDiceRolls {
         String fours = GetFours(diceCounts);
         String fives = GetFives(diceCounts);
         String sixes = GetSixes(diceCounts);
+        List<String> oneFiveOne = GetOneFiveOne(diceCounts);
+        List<String> twoFiveOne = GetTwoFiveOne(diceCounts);
         if(fours.length() > 0)
         {
             scores.add(fours);
@@ -94,22 +96,51 @@ public class FarkleDiceRolls {
         {
             scores.add(sixes);
         }
+        if(!oneFiveOne.isEmpty())
+        {
+            scores.addAll(oneFiveOne);
+        }
+        if(!twoFiveOne.isEmpty())
+        {
+            scores.addAll(twoFiveOne);
+        }
         return scores;
     }
 
     private String GetSixes(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'GetSixes'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] >= 5)
+            {
+                int dScore = GetDieVal(i+1) * 4;
+                return "Five " + (i+1) + "'s: " + dScore;
+            }
+        }
+        return "";
     }
 
     private String GetFives(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'GetFives'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] == 6)
+            {
+                int dScore = GetDieVal(i+1) * 8;
+                return "Six " + (i+1) + "'s: " + dScore;
+            }
+        }
+        return "";
     }
 
     private String GetFours(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'GetFours'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] >= 4)
+            {
+                int dScore = GetDieVal(i+1) * 2;
+                return "Four " + (i+1) + "'s: " + dScore;
+            }
+        }
+        return "";
     }
 
     private List<String> GetThrees(int[] dice) {
