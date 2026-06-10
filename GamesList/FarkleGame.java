@@ -48,8 +48,9 @@ public class FarkleGame {
         FarkleGameController gameInfo = new FarkleGameController(players, minScore);
         while(!playString.equals("quit") && !gameInfo.IsGameOver())
         {
-            System.out.println("Alright, " + gameInfo.currentPlayer + ", you current score is " + gameInfo.currentScore + ". Do you want to continue or stop?");
+            System.out.println("Alright, " + gameInfo.GetCurrentPlayer() + ", you current score is " + gameInfo.currentScore + ". Do you want to continue or bank your points?");
             playString = menuPrompt.nextLine().toLowerCase();
+            gameInfo.ParseInput(playString);
         }
         System.out.println("Game end has not been implemented yet.");
         gameInfo.DisplayLeaderboard();

@@ -1,25 +1,35 @@
 package GamesList.FarkleMaterials;
 
+import GamesList.ToolsForMultipleGames.GameDice;
 import java.util.Arrays;
 
 public class FarkleGameController {
 
     private int[] playerScores;
     private int players;
-    public int currentPlayer;
+    private int currentPlayer;
     public int currentScore;
     private int minScore;
     private boolean[] haveStarted;
     private boolean[] haveFinished;
+    private GameDice[] gameDice;
+    private int remainingDice;
 
     public FarkleGameController(int players, int minScore) {
         this.players = players;
         this.minScore = minScore;
         this.currentPlayer = 1;
         this.currentScore = 0;
+        this.remainingDice = 6;
         this.playerScores = new int[players];
         this.haveStarted = new boolean[players];
         this.haveFinished = new boolean[players];
+        this.gameDice = new GameDice[6];
+        for(int i = 0; i < this.gameDice.length; i++)
+        {
+            gameDice[i] = new GameDice(6);
+        }
+        
     }
 
     public boolean IsGameOver() {
@@ -44,6 +54,32 @@ public class FarkleGameController {
         {
             System.out.println("#" + i + ": Player " + (scoreboard[scoreboard.length-i][1] + 1) + " with " + scoreboard[scoreboard.length-i][0] + " points.");
         }
+    }
+
+    public void ParseInput(String playString)
+    {
+        switch(playString){
+            case "roll" -> {
+                Roll(remainingDice);
+                System.out.println("Roll Result: " + this.DisplayDice());
+            }
+            default -> {
+                System.out.println("Not a valid input");
+            }
+        }
+    }
+
+    public int GetCurrentPlayer()
+    {
+        return currentPlayer;
+    }
+
+    private void Roll(int remainingRolls) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private String DisplayDice() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
