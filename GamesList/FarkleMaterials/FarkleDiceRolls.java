@@ -1,6 +1,8 @@
 
 package GamesList.FarkleMaterials;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class FarkleDiceRolls {
 
@@ -32,13 +34,21 @@ public class FarkleDiceRolls {
     }
 
     private boolean HasStraight(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'HasStraight'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] != 1)
+                return false;
+        }
+        return true;
     }
 
     private boolean HasThreePairs(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'HasThreePairs'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] % 2 != 0)
+                return false;
+        }
+        return true;
     }
 
     private int[] GetDiceNums(int[] dice) {
@@ -50,8 +60,17 @@ public class FarkleDiceRolls {
         return categorize;
     }
 
-    public String[] GetValidScores() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<String> GetValidScores(int[] dice) {
+        List<String> scores = new ArrayList<>();
+        if(HasStraight(dice))
+        {
+            scores.add("Straight: 1500 pts");
+        }
+        if(HasThreePairs(dice))
+        {
+            scores.add("Three pairs: 1500 pts");
+        }
+        return scores;
     }
 
 

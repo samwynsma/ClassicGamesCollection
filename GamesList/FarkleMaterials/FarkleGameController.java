@@ -2,13 +2,16 @@ package GamesList.FarkleMaterials;
 
 import GamesList.ToolsForMultipleGames.GameDice;
 import java.util.Arrays;
+import java.util.List;
 
 public class FarkleGameController {
 
     private int[] playerScores;
     private int players;
     private int currentPlayer;
+
     public int currentScore;
+
     private int minScore;
     private boolean[] haveStarted;
     private boolean[] haveFinished;
@@ -27,6 +30,7 @@ public class FarkleGameController {
         this.haveStarted = new boolean[players];
         this.haveFinished = new boolean[players];
         this.gameDice = new GameDice[6];
+        this.dieValues = new int[6];
         this.farkleScores = new FarkleDiceRolls();
         for(int i = 0; i < this.gameDice.length; i++)
         {
@@ -64,7 +68,6 @@ public class FarkleGameController {
         switch(playString){
             case "roll" -> {
                 Roll(remainingDice);
-                System.out.println("Roll Result: " + this.DisplayDice());
             }
             default -> {
                 System.out.println("Not a valid input");
@@ -93,18 +96,30 @@ public class FarkleGameController {
         {
             diceToCheck[i] = dieValues[i];
         }
+        System.out.println(DisplayDice(diceToCheck));
         if(farkleScores.CheckZonk(diceToCheck))
         {
             System.out.println("Oh dear, seems like you've rolled a fumble. That means that your turn ends and you score nothing.");
         }
         else
         {
-            String[] possibleScores = farkleScores.GetValidScores();
+            List<String> possibleScores = farkleScores.GetValidScores(diceToCheck);
+            for(int i = 0; i < possibleScores.size(); i++)
+            {
+                System.out.print(possibleScores.get(i) + " ");
+            }
         }
     }
 
-    private String DisplayDice() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private String DisplayDice(int[] dice) {
+        StringBuilder sb = new StringBuilder("");
+        for(int i = 0; i < dice.length; i++)
+        {
+            sb.append(dice[i]);
+            if(i + 1 < dice.length)
+                sb.append(" ");
+        }
+        return sb.toString();
     }
     
 }
