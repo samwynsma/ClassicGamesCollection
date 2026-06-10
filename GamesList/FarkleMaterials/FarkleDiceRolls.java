@@ -193,6 +193,27 @@ public class FarkleDiceRolls {
     }
 
     private List<String> GetTwoFiveOne(int[] diceCounts) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<String> oneFive = new ArrayList<>();
+        if(diceCounts[0] >= 2)
+        {
+            oneFive.add("Two ones: 200 pts");
+        }
+        if(diceCounts[4] >= 2)
+        {
+            oneFive.add("Two fives: 100 pts");
+        }
+        if(diceCounts[0] >= 2 && diceCounts[4] >= 2)
+        {
+            oneFive.add("Two fives and two ones: 300 pts");
+        }
+        if(diceCounts[0] >= 1 && diceCounts[4] >= 2)
+        {
+            oneFive.add("Two fives and one one: 200 pts");
+        }
+        if(diceCounts[0] >= 2 && diceCounts[4] >= 1)
+        {
+            oneFive.add("Two ones and one five: 250 pts");
+        }
+        return oneFive;
     }
 }
