@@ -1,7 +1,6 @@
 package GamesList;
-import java.util.Scanner;
-
 import GamesList.FarkleMaterials.FarkleGameController;
+import java.util.Scanner;
 
 public class FarkleGame {
 
@@ -49,7 +48,8 @@ public class FarkleGame {
         FarkleGameController gameInfo = new FarkleGameController(players, minScore);
         while(!playString.equals("quit") && !gameInfo.IsGameOver())
         {
-            break;
+            System.out.println("Alright, " + gameInfo.currentPlayer + ", you current score is " + gameInfo.currentScore + ". Do you want to continue or stop?");
+            playString = menuPrompt.nextLine().toLowerCase();
         }
         System.out.println("Game end has not been implemented yet.");
         gameInfo.DisplayLeaderboard();
