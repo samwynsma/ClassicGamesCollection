@@ -13,7 +13,9 @@ public class FarkleGameController {
     private boolean[] haveStarted;
     private boolean[] haveFinished;
     private GameDice[] gameDice;
+    private int[] dieValues;
     private int remainingDice;
+    private FarkleDiceRolls farkleScores;
 
     public FarkleGameController(int players, int minScore) {
         this.players = players;
@@ -25,6 +27,7 @@ public class FarkleGameController {
         this.haveStarted = new boolean[players];
         this.haveFinished = new boolean[players];
         this.gameDice = new GameDice[6];
+        this.farkleScores = new FarkleDiceRolls();
         for(int i = 0; i < this.gameDice.length; i++)
         {
             gameDice[i] = new GameDice(6);
@@ -69,13 +72,35 @@ public class FarkleGameController {
         }
     }
 
+    public int ChooseScore(String playString)
+    {
+        return 0;
+    }
+
     public int GetCurrentPlayer()
     {
         return currentPlayer;
     }
 
     private void Roll(int remainingRolls) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for(int i = 0; i < remainingRolls; i++)
+        {
+            dieValues[i] = gameDice[i].RollDice();
+        }
+
+        int[] diceToCheck = new int[remainingRolls];
+        for(int i = 0; i < diceToCheck.length; i++)
+        {
+            diceToCheck[i] = dieValues[i];
+        }
+        if(farkleScores.CheckZonk(diceToCheck))
+        {
+            System.out.println("Oh dear, seems like you've rolled a fumble. That means that your turn ends and you score nothing.");
+        }
+        else
+        {
+            String[] possibleScores = farkleScores.GetValidScores();
+        }
     }
 
     private String DisplayDice() {
