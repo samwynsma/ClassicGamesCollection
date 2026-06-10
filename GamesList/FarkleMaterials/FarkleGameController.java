@@ -103,7 +103,8 @@ public class FarkleGameController {
         }
         else
         {
-            List<String> possibleScores = farkleScores.GetValidScores(diceToCheck);
+            int[] organizedDice = farkleScores.GetDiceNums(diceToCheck);
+            List<String> possibleScores = farkleScores.GetValidScores(organizedDice);
             for(int i = 0; i < possibleScores.size(); i++)
             {
                 System.out.print(possibleScores.get(i) + " ");

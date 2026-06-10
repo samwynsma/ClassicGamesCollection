@@ -51,7 +51,7 @@ public class FarkleDiceRolls {
         return true;
     }
 
-    private int[] GetDiceNums(int[] dice) {
+    public int[] GetDiceNums(int[] dice) {
         int[] categorize = new int[6];
         for(int i = 0; i < dice.length; i++)
         {
@@ -60,28 +60,28 @@ public class FarkleDiceRolls {
         return categorize;
     }
 
-    public List<String> GetValidScores(int[] dice) {
+    public List<String> GetValidScores(int[] diceCounts) {
         List<String> scores = new ArrayList<>();
-        if(HasStraight(dice))
+        if(HasStraight(diceCounts))
         {
             scores.add("Straight: 1500 pts");
         }
-        if(HasThreePairs(dice))
+        if(HasThreePairs(diceCounts))
         {
             scores.add("Three pairs: 1500 pts");
         }
-        if(HasTwoTriplets(dice))
+        if(HasTwoTriplets(diceCounts))
         {
             scores.add("Two threes: 2500 pts");
         }
-        List<String> threes = GetThrees(dice);
-        if(threes.size() > 0)
+        List<String> threes = GetThrees(diceCounts);
+        if(!threes.isEmpty())
         {
             scores.addAll(threes);
         }
-        String fours = GetFours(dice);
-        String fives = GetFives(dice);
-        String sixes = GetSixes(dice);
+        String fours = GetFours(diceCounts);
+        String fives = GetFives(diceCounts);
+        String sixes = GetSixes(diceCounts);
         if(fours.length() > 0)
         {
             scores.add(fours);
@@ -113,13 +113,35 @@ public class FarkleDiceRolls {
     }
 
     private List<String> GetThrees(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'GetThrees'");
+        List<String> threes = new ArrayList<String>();
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] >= 3)
+            {
+                int dScore = GetDieVal(i+1);
+                threes.add("Three " + (i+1) + "'s: " + dScore);
+            }
+        }
+        return threes;
+    }
+
+    private int GetDieVal(int i) {
+        if(i == 1)
+        {
+            return 1000;
+        }
+        return (i * 100);
     }
 
     private boolean HasTwoTriplets(int[] dice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'HasTwoTriplets'");
+        for(int i = 0; i < dice.length; i++)
+        {
+            if(dice[i] != 3 && dice[i] != 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 
