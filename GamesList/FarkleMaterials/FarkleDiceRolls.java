@@ -70,7 +70,56 @@ public class FarkleDiceRolls {
         {
             scores.add("Three pairs: 1500 pts");
         }
+        if(HasTwoTriplets(dice))
+        {
+            scores.add("Two threes: 2500 pts");
+        }
+        List<String> threes = GetThrees(dice);
+        if(threes.size() > 0)
+        {
+            scores.addAll(threes);
+        }
+        String fours = GetFours(dice);
+        String fives = GetFives(dice);
+        String sixes = GetSixes(dice);
+        if(fours.length() > 0)
+        {
+            scores.add(fours);
+        }
+        if(fives.length() > 0)
+        {
+            scores.add(fives);
+        }
+        if(sixes.length() > 0)
+        {
+            scores.add(sixes);
+        }
         return scores;
+    }
+
+    private String GetSixes(int[] dice) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'GetSixes'");
+    }
+
+    private String GetFives(int[] dice) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'GetFives'");
+    }
+
+    private String GetFours(int[] dice) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'GetFours'");
+    }
+
+    private List<String> GetThrees(int[] dice) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'GetThrees'");
+    }
+
+    private boolean HasTwoTriplets(int[] dice) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'HasTwoTriplets'");
     }
 
 
