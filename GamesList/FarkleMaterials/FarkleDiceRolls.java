@@ -144,7 +144,7 @@ public class FarkleDiceRolls {
     }
 
     private List<String> GetThrees(int[] dice) {
-        List<String> threes = new ArrayList<String>();
+        List<String> threes = new ArrayList<>();
         for(int i = 0; i < dice.length; i++)
         {
             if(dice[i] >= 3)
@@ -174,7 +174,25 @@ public class FarkleDiceRolls {
         }
         return true;
     }
+    
+    private List<String> GetOneFiveOne(int[] diceCounts) {
+        List<String> oneFive = new ArrayList<>();
+        if(diceCounts[0] >= 1)
+        {
+            oneFive.add("One one: 100 pts");
+        }
+        if(diceCounts[4] >= 1)
+        {
+            oneFive.add("One five: 50 pts");
+        }
+        if(diceCounts[0] >= 1 && diceCounts[4] >= 1)
+        {
+            oneFive.add("One one and one five: 150 pts");
+        }
+        return oneFive;
+    }
 
-
-
+    private List<String> GetTwoFiveOne(int[] diceCounts) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
