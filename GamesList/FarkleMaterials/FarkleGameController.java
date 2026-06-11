@@ -75,7 +75,7 @@ public class FarkleGameController {
                 {
                     currentPlayer++;
                     if(currentPlayer > players)
-                        currentPlayer = 0;
+                        currentPlayer = 1;
                 }
                 else
                 {
@@ -90,6 +90,13 @@ public class FarkleGameController {
                             if(inputVal < 1 || inputVal > possibleItems)
                             {
                                 throw new ArithmeticException("Number outside of range.");
+                            }
+                            System.out.println(determineScores[inputVal-1][0] + " " + determineScores[inputVal-1][1]);
+                            currentScore += determineScores[inputVal-1][0];
+                            remainingDice -= determineScores[inputVal-1][1];
+                            if(remainingDice == 0)
+                            {
+                                remainingDice = 6;
                             }
                             isValid = true;
                         }
@@ -118,6 +125,11 @@ public class FarkleGameController {
     public int GetCurrentPlayer()
     {
         return currentPlayer;
+    }
+
+    public int GetCurrentPlayerScore()
+    {
+        return playerScores[currentPlayer-1];
     }
 
     private int Roll(int remainingRolls) {

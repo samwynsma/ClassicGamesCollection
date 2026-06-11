@@ -113,7 +113,7 @@ public class FarkleDiceRolls {
             if(dice[i] >= 5)
             {
                 int dScore = GetDieVal(i+1) * 4;
-                return "Five " + (i+1) + "'s: " + dScore;
+                return "Five " + (i+1) + "'s: " + dScore + " pts";
             }
         }
         return "";
@@ -125,7 +125,7 @@ public class FarkleDiceRolls {
             if(dice[i] == 6)
             {
                 int dScore = GetDieVal(i+1) * 8;
-                return "Six " + (i+1) + "'s: " + dScore;
+                return "Six " + (i+1) + "'s: " + dScore + " pts";
             }
         }
         return "";
@@ -137,7 +137,7 @@ public class FarkleDiceRolls {
             if(dice[i] >= 4)
             {
                 int dScore = GetDieVal(i+1) * 2;
-                return "Four " + (i+1) + "'s: " + dScore;
+                return "Four " + (i+1) + "'s: " + dScore + " pts";
             }
         }
         return "";
@@ -150,7 +150,7 @@ public class FarkleDiceRolls {
             if(dice[i] >= 3)
             {
                 int dScore = GetDieVal(i+1);
-                threes.add("Three " + (i+1) + "'s: " + dScore);
+                threes.add("Three " + (i+1) + "'s: " + dScore + " pts");
             }
         }
         return threes;
@@ -225,46 +225,47 @@ public class FarkleDiceRolls {
             String[] optionsStr = options.get(i).split(" ");
             int scoreVal = Integer.parseInt(optionsStr[optionsStr.length-2]);
             int diceUsed = 0;
-            if(optionsStr[1].equals("straight") || optionsStr[1].equals("two"))
+            System.out.println(optionsStr[1]);
+            if(optionsStr[0].equals("Straight") || optionsStr[0].equals("Two"))
             {
                 diceUsed = 6;
             }
-            if(optionsStr[1].equals("three") && optionsStr[2].equals("pair"))
+            if(optionsStr[0].equals("Three") && optionsStr[1].equals("Pair"))
             {
                 diceUsed = 6;
             }
-            if(optionsStr[1].equals("six"))
+            if(optionsStr[0].equals("Six"))
             {
                 diceUsed = 6;
             }
-            if(optionsStr[1].equals("five"))
+            if(optionsStr[0].equals("Five"))
             {
                 diceUsed = 5;
             }
-            if(optionsStr[1].equals("four"))
+            if(optionsStr[0].equals("Four"))
             {
                 diceUsed = 4;
             }
-            if(optionsStr[1].equals("three"))
+            if(optionsStr[0].equals("Three"))
             {
                 diceUsed = 3;
             }
-            if(optionsStr[1].equals("two"))
+            if(optionsStr[0].equals("Two"))
             {
                 diceUsed = 2;
             }
-            if(optionsStr[1].equals("one"))
+            if(optionsStr[0].equals("One"))
             {
                 diceUsed = 1;
             }
 
-            if(optionsStr.length == 8)
+            if(optionsStr.length == 7)
             {
-                if(optionsStr[1].equals("two"))
+                if(optionsStr[3].equals("two"))
                 {
                     diceUsed += 2;
                 }
-                if(optionsStr[1].equals("one"))
+                if(optionsStr[3].equals("one"))
                 {
                     diceUsed++;
                 }

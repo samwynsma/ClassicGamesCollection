@@ -48,7 +48,7 @@ public class FarkleGame {
         FarkleGameController gameInfo = new FarkleGameController(players, minScore);
         while(!playString.equals("quit") && !gameInfo.IsGameOver())
         {
-            System.out.println("Alright, " + gameInfo.GetCurrentPlayer() + ", you current score is " + gameInfo.currentScore + ". Do you want to roll or bank your points?");
+            System.out.println("Alright, Player " + gameInfo.GetCurrentPlayer() + ", you current score is " + gameInfo.currentScore + ". Do you want to roll or bank your points? Your total score is " + gameInfo.GetCurrentPlayerScore() + ".");
             playString = menuPrompt.nextLine().toLowerCase();
             gameInfo.ParseInput(playString, menuPrompt);
         }
