@@ -3,6 +3,7 @@ package GamesList.FarkleMaterials;
 import GamesList.ToolsForMultipleGames.GameDice;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class FarkleGameController {
 
@@ -19,6 +20,7 @@ public class FarkleGameController {
     private int[] dieValues;
     private int remainingDice;
     private FarkleDiceRolls farkleScores;
+    private List<String> currentValidOptions;
 
     public FarkleGameController(int players, int minScore) {
         this.players = players;
@@ -63,11 +65,44 @@ public class FarkleGameController {
         }
     }
 
-    public void ParseInput(String playString)
+    public void ParseInput(String playString, Scanner menuString)
     {
         switch(playString){
             case "roll" -> {
-                Roll(remainingDice);
+                int possibleItems = Roll(remainingDice);
+                int[][] determineScores = farkleScores.ParseScores(currentValidOptions);
+                if(possibleItems == 0)
+                {
+                    currentPlayer++;
+                    if(currentPlayer > players)
+                        currentPlayer = 0;
+                }
+                else
+                {
+                    String play = "";
+                    boolean isValid = false;
+                    while(!isValid)
+                    {
+                        play = menuString.nextLine().toLowerCase();
+                        try
+                        {
+                            int inputVal = Integer.parseInt(play);
+                            if(inputVal < 1 || inputVal > possibleItems)
+                            {
+                                throw new ArithmeticException("Number outside of range.");
+                            }
+                            isValid = true;
+                        }
+                        catch(NumberFormatException e)
+                        {
+                            System.out.println("Please enter a number corresponding to your choice.");
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("Please enter a number between 1 and " + possibleItems + ".");
+                        }
+                    }
+                }
             }
             default -> {
                 System.out.println("Not a valid input");
@@ -85,7 +120,8 @@ public class FarkleGameController {
         return currentPlayer;
     }
 
-    private void Roll(int remainingRolls) {
+    private int Roll(int remainingRolls) {
+        int possiblePts = 0;
         for(int i = 0; i < remainingRolls; i++)
         {
             dieValues[i] = gameDice[i].RollDice();
@@ -104,12 +140,16 @@ public class FarkleGameController {
         else
         {
             int[] organizedDice = farkleScores.GetDiceNums(diceToCheck);
-            List<String> possibleScores = farkleScores.GetValidScores(organizedDice);
-            for(int i = 0; i < possibleScores.size(); i++)
+            currentValidOptions = farkleScores.GetValidScores(organizedDice);
+            possiblePts = currentValidOptions.size();
+            for(int i = 0; i < currentValidOptions.size(); i++)
             {
-                System.out.print(possibleScores.get(i) + " ");
+                System.out.print((i+1) + ". " + currentValidOptions.get(i) + " ");
             }
+            System.out.println("");
+            
         }
+        return possiblePts;
     }
 
     private String DisplayDice(int[] dice) {

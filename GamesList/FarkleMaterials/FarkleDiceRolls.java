@@ -216,4 +216,9 @@ public class FarkleDiceRolls {
         }
         return oneFive;
     }
+
+    public int[][] ParseScores(List<String> options)
+    {
+        return new int[3][2];
+    }
 }

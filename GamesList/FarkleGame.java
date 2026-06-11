@@ -50,7 +50,7 @@ public class FarkleGame {
         {
             System.out.println("Alright, " + gameInfo.GetCurrentPlayer() + ", you current score is " + gameInfo.currentScore + ". Do you want to roll or bank your points?");
             playString = menuPrompt.nextLine().toLowerCase();
-            gameInfo.ParseInput(playString);
+            gameInfo.ParseInput(playString, menuPrompt);
         }
         System.out.println("Game end has not been implemented yet.");
         gameInfo.DisplayLeaderboard();
