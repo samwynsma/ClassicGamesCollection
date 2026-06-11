@@ -74,6 +74,8 @@ public class FarkleGameController {
                 if(possibleItems == 0)
                 {
                     currentPlayer++;
+                    currentScore = 0;
+                    remainingDice = 6;
                     if(currentPlayer > players)
                         currentPlayer = 1;
                 }
@@ -91,7 +93,6 @@ public class FarkleGameController {
                             {
                                 throw new ArithmeticException("Number outside of range.");
                             }
-                            System.out.println(determineScores[inputVal-1][0] + " " + determineScores[inputVal-1][1]);
                             currentScore += determineScores[inputVal-1][0];
                             remainingDice -= determineScores[inputVal-1][1];
                             if(remainingDice == 0)
@@ -110,6 +111,28 @@ public class FarkleGameController {
                         }
                     }
                 }
+            }
+            case "dice" -> {
+                System.out.println("You currently have " + remainingDice + " dice remaining.");
+            }
+            case "bank" -> {
+                if(playerScores[currentPlayer-1] > 0 || currentScore >= minScore)
+                {
+                    playerScores[currentPlayer-1] += currentScore;
+                    System.out.println("Player " + currentPlayer + " banked " + currentScore + " points. Their new score is " + playerScores[currentPlayer-1] + ".");
+                    currentScore = 0;
+                    currentPlayer++;
+                    remainingDice = 6;
+                    if(currentPlayer > players)
+                        currentPlayer = 1;
+                }
+                else
+                {
+                    System.out.println("You don't have enough points yet to bank. Do something else.");
+                }
+            }
+            case "quit" -> {
+
             }
             default -> {
                 System.out.println("Not a valid input");

@@ -225,7 +225,6 @@ public class FarkleDiceRolls {
             String[] optionsStr = options.get(i).split(" ");
             int scoreVal = Integer.parseInt(optionsStr[optionsStr.length-2]);
             int diceUsed = 0;
-            System.out.println(optionsStr[1]);
             if(optionsStr[0].equals("Straight") || optionsStr[0].equals("Two"))
             {
                 diceUsed = 6;
