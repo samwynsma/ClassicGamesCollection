@@ -219,6 +219,58 @@ public class FarkleDiceRolls {
 
     public int[][] ParseScores(List<String> options)
     {
-        return new int[3][2];
+        int[][] scores = new int[options.size()][2];
+        for(int i = 0; i < options.size(); i++)
+        {
+            String[] optionsStr = options.get(i).split(" ");
+            int scoreVal = Integer.parseInt(optionsStr[optionsStr.length-2]);
+            int diceUsed = 0;
+            if(optionsStr[1].equals("straight") || optionsStr[1].equals("two"))
+            {
+                diceUsed = 6;
+            }
+            if(optionsStr[1].equals("three") && optionsStr[2].equals("pair"))
+            {
+                diceUsed = 6;
+            }
+            if(optionsStr[1].equals("six"))
+            {
+                diceUsed = 6;
+            }
+            if(optionsStr[1].equals("five"))
+            {
+                diceUsed = 5;
+            }
+            if(optionsStr[1].equals("four"))
+            {
+                diceUsed = 4;
+            }
+            if(optionsStr[1].equals("three"))
+            {
+                diceUsed = 3;
+            }
+            if(optionsStr[1].equals("two"))
+            {
+                diceUsed = 2;
+            }
+            if(optionsStr[1].equals("one"))
+            {
+                diceUsed = 1;
+            }
+
+            if(optionsStr.length == 8)
+            {
+                if(optionsStr[1].equals("two"))
+                {
+                    diceUsed += 2;
+                }
+                if(optionsStr[1].equals("one"))
+                {
+                    diceUsed++;
+                }
+            }
+            scores[i] = new int[] {scoreVal, diceUsed};
+        }
+        return scores;
     }
 }
