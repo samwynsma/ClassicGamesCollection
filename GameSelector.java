@@ -3,6 +3,7 @@ import java.util.Scanner;
 import GamesList.BlackJackGame;
 import GamesList.ConnectFourGame;
 import GamesList.FarkleGame;
+import GamesList.GomokuGame;
 import GamesList.MasterMindGame;
 import GamesList.RiskyDiceGame;
 import GamesList.YachtGame;
@@ -40,6 +41,10 @@ public class GameSelector {
             case "6" -> {
                 FarkleGame farkle = new FarkleGame();
                 farkle.PlayGame(menuPrompt);
+            }
+            case "7" -> {
+                GomokuGame gomoku = new GomokuGame();
+                gomoku.PlayGame(menuPrompt);
             }
             case "quit" -> {
             }
