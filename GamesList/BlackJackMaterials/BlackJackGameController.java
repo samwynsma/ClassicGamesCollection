@@ -14,10 +14,10 @@ public class BlackJackGameController {
 
     public BlackJackGameController(){
         char[] suits = new char[4];
-        suits[0] = '♠';
-        suits[1] = '♥';
-        suits[2] = '♦';
-        suits[3] = '♥';
+        suits[0] = '\u2660';
+        suits[1] = '\u2665';
+        suits[2] = '\u2666';
+        suits[3] = '\u2663';
         isGameOver = false;
         cards = new CardDeck(suits);
         dealer = new BlackJackHand();

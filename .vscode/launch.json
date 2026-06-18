@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainMenuGUI",
+            "request": "launch",
+            "mainClass": "MainMenuGUI",
+            "projectName": "ClassicGamesCollection_f8933830"
+        },
+        {
+            "type": "java",
             "name": "MainMenu",
             "request": "launch",
             "mainClass": "MainMenu",
