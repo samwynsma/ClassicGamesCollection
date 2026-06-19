@@ -125,6 +125,10 @@ public class RiskyDiceGUI extends JFrame {
             dispose();
             return;
         }
+        if (controller.IsGameOver()) {
+            dispose();
+            return;
+        }
         String output = captureOutput(() -> controller.ParseInput("quit"));
         appendLog(output);
         appendLog("\nGame quit by user.\n");
