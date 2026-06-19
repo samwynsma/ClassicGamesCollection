@@ -59,6 +59,12 @@ public class MainMenuGUI extends JFrame {
         }
 
         String menuString = label.substring(0, 1);
+        if (menuString.equals("5")) {
+            RiskyDiceGUI riskyDiceWindow = new RiskyDiceGUI();
+            riskyDiceWindow.setVisible(true);
+            return;
+        }
+
         String gameName = label.substring(3);
         JOptionPane.showMessageDialog(
             this,

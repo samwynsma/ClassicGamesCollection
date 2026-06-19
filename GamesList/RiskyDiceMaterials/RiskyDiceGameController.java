@@ -52,6 +52,22 @@ public class RiskyDiceGameController {
         return winnerDetails;
     }
 
+    public int GetPlayers() {
+        return players;
+    }
+
+    public int GetCurrentDie() {
+        return currentDie;
+    }
+
+    public int GetCurrentRolls() {
+        return currentRolls;
+    }
+
+    public boolean CanAdvance() {
+        return diceRolls.CanAdvance();
+    }
+
     public void ParseInput(String playString) {
         switch(playString)
         {
