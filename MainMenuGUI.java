@@ -59,6 +59,11 @@ public class MainMenuGUI extends JFrame {
         }
 
         String menuString = label.substring(0, 1);
+        if (menuString.equals("1")) {
+            ConnectFourGUI connectFourWindow = new ConnectFourGUI();
+            connectFourWindow.setVisible(true);
+            return;
+        }
         if (menuString.equals("5")) {
             RiskyDiceGUI riskyDiceWindow = new RiskyDiceGUI();
             riskyDiceWindow.setVisible(true);
