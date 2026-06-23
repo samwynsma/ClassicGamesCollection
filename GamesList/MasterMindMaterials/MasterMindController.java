@@ -52,7 +52,18 @@ public class MasterMindController {
             maxElement = 9;
         }
         correctCode = new MasterMindCode(maxElement);
-        System.out.println(correctCode.DisplayCode());
+    }
+
+    public int getMaxElement() {
+        return maxElement;
+    }
+
+    public int getGuesses() {
+        return guesses;
+    }
+
+    public String getDifficulty() {
+        return diff;
     }
 
     public boolean CheckValidity(String code) {

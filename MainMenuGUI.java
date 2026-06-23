@@ -64,6 +64,11 @@ public class MainMenuGUI extends JFrame {
             connectFourWindow.setVisible(true);
             return;
         }
+        if (menuString.equals("2")) {
+            MasterMindGUI masterMindWindow = new MasterMindGUI();
+            masterMindWindow.setVisible(true);
+            return;
+        }
         if (menuString.equals("5")) {
             RiskyDiceGUI riskyDiceWindow = new RiskyDiceGUI();
             riskyDiceWindow.setVisible(true);
