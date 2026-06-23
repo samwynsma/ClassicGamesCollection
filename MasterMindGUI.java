@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class MasterMindGUI extends JFrame {
     private MasterMindController controller;
+    private final JPanel guessHistoryPanel;
     private final JTextArea historyArea;
     private final JTextField guessField;
     private final JLabel statusLabel;
@@ -23,13 +24,26 @@ public class MasterMindGUI extends JFrame {
         title.setFont(title.getFont().deriveFont(Font.BOLD, 24f));
         add(title, BorderLayout.NORTH);
 
+        JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+
+        JPanel pegHistoryContainer = new JPanel(new BorderLayout(6, 6));
+        pegHistoryContainer.setBorder(BorderFactory.createTitledBorder("Guess History"));
+        guessHistoryPanel = new JPanel();
+        guessHistoryPanel.setLayout(new BoxLayout(guessHistoryPanel, BoxLayout.Y_AXIS));
+        JScrollPane pegScrollPane = new JScrollPane(guessHistoryPanel);
+        pegScrollPane.setPreferredSize(new Dimension(520, 220));
+        pegHistoryContainer.add(pegScrollPane, BorderLayout.CENTER);
+        centerPanel.add(pegHistoryContainer);
+
         historyArea = new JTextArea();
         historyArea.setEditable(false);
         historyArea.setLineWrap(true);
         historyArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(historyArea);
-        scrollPane.setPreferredSize(new Dimension(520, 320));
-        add(scrollPane, BorderLayout.CENTER);
+        JScrollPane historyScrollPane = new JScrollPane(historyArea);
+        historyScrollPane.setBorder(BorderFactory.createTitledBorder("Hints & Log"));
+        centerPanel.add(historyScrollPane);
+
+        add(centerPanel, BorderLayout.CENTER);
 
         JPanel controls = new JPanel(new BorderLayout(10, 10));
         controls.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
@@ -79,6 +93,7 @@ public class MasterMindGUI extends JFrame {
         controller.SetDifficulty(difficulty);
         controller.SetUpGame();
 
+        guessHistoryPanel.removeAll();
         historyArea.setText("Welcome to Mastermind!\n");
         historyArea.append("Difficulty: " + difficulty + "\n");
         historyArea.append("Guess a four-digit code using digits 0 through " + getMaxDigitForDifficulty(difficulty) + ".\n");
@@ -141,19 +156,18 @@ public class MasterMindGUI extends JFrame {
         }
 
         boolean solved = controller.CheckIfSolved(guess);
+        addGuessRow(guess);
         if (solved) {
-            historyArea.append("Guess: " + guess + " - Correct!\n");
-            historyArea.append("You solved it in " + getGuessesMade() + " guesses.\n");
+            historyArea.append("Correct! You solved the code in " + getGuessesMade() + " guesses.\n");
             endGame("Congratulations! You solved the code.");
             return;
         }
 
         String hintOutput = captureOutput(() -> controller.GiveHints(guess));
         if (!hintOutput.isBlank()) {
-            historyArea.append("Guess: " + guess + "\n");
             historyArea.append(hintOutput + "\n");
         } else {
-            historyArea.append("Guess: " + guess + " - Hint unavailable.\n");
+            historyArea.append("Hint unavailable.\n");
         }
         guessField.setText("");
         guessField.requestFocusInWindow();
@@ -213,6 +227,48 @@ public class MasterMindGUI extends JFrame {
             System.setOut(oldOut);
         }
         return baos.toString();
+    }
+
+    private void addGuessRow(String guess) {
+        JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        row.setAlignmentX(Component.LEFT_ALIGNMENT);
+        for (char ch : guess.toCharArray()) {
+            int peg = ch - '0';
+            JPanel pegPanel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(getPegColor(peg));
+                    g2.fillOval(4, 4, getWidth() - 8, getHeight() - 8);
+                    g2.dispose();
+                }
+            };
+            pegPanel.setPreferredSize(new Dimension(32, 32));
+            pegPanel.setBackground(Color.WHITE);
+            pegPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+            row.add(pegPanel);
+        }
+        guessHistoryPanel.add(row);
+        guessHistoryPanel.revalidate();
+        guessHistoryPanel.repaint();
+    }
+
+    private Color getPegColor(int digit) {
+        return switch (digit) {
+            case 0 -> Color.GRAY;
+            case 1 -> Color.BLUE;
+            case 2 -> Color.RED;
+            case 3 -> Color.GREEN;
+            case 4 -> Color.ORANGE;
+            case 5 -> new Color(128, 0, 128); // purple
+            case 6 -> Color.CYAN;
+            case 7 -> Color.MAGENTA;
+            case 8 -> Color.PINK;
+            case 9 -> Color.BLACK;
+            default -> Color.LIGHT_GRAY;
+        };
     }
 
     private int getGuessesMade() {
