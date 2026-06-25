@@ -69,6 +69,11 @@ public class MainMenuGUI extends JFrame {
             masterMindWindow.setVisible(true);
             return;
         }
+        if (menuString.equals("3")) {
+            BlackJackGUI blackjackWindow = new BlackJackGUI();
+            blackjackWindow.setVisible(true);
+            return;
+        }
         if (menuString.equals("5")) {
             RiskyDiceGUI riskyDiceWindow = new RiskyDiceGUI();
             riskyDiceWindow.setVisible(true);
