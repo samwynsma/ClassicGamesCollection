@@ -19,7 +19,7 @@ public class GomokuGame {
         GomokuGameController gameInfo = new GomokuGameController();
         while(inARow < 3 || inARow > 7)
         {
-            System.out.println("How many players do you want to have in this game? Please select a number between 2 and 10.");
+            System.out.println("How many tiles in a row do you want for victory? Five is the traditional number");
             playString = menuPrompt.nextLine().toLowerCase();
             try
             {
@@ -27,13 +27,14 @@ public class GomokuGame {
             }
             catch(NumberFormatException e)
             {
-                System.out.println("Please type in a number between 2 and 10");
+                System.out.println("Please type in a number between 3 and 7");
             }
             catch(Exception e)
             {
                 System.out.println(e.getMessage() + " something went wrong.");
             }
         }
+        gameInfo.SetWinCondition(inARow);
 
         while(!isGameOver)
         {
@@ -60,8 +61,13 @@ public class GomokuGame {
                 break;
             }
             String play2 = playString;
-            
+            isPlayerOne = board.PlaceTile(play1, play2, isPlayerOne);
+            isGameOver = gameInfo.CheckVictory(board);
         }
+
+        System.out.println("The game is over.");
+        System.out.println(gameInfo.getWinner() + " is the winner.");
+        board.DisplayBoard();
         
     }
     
