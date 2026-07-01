@@ -39,14 +39,16 @@ public class GomokuGameController {
                 if(boardInfo[i][j] == '.')
                 {
                     isDraw = false;
-                    break;
+                    continue;
                 }
+                isWin |= checkVertical(boardInfo, row, col, victoryToken);
+                isWin |= checkHorizontal(boardInfo, row, col, victoryToken);
+                isWin |= checkDiagonal(boardInfo, row, col, victoryToken, true);
+                isWin |= checkDiagonal(boardInfo, row, col, victoryToken, false);
             }
-            if(!isDraw)
+            if(!isDraw && isWin)
                 break;
         }
-
-        isWin |= checkVertical(boardInfo, row, col, victoryToken, true);
 
         if(!isWin)
         {
@@ -55,89 +57,59 @@ public class GomokuGameController {
         return isDraw || isWin;
     }
 
-    public boolean checkVertical(char[][] board, int row, int col, char token, boolean moveUp)
+    public boolean checkVertical(char[][] board, int row, int col, char token)
     {
-        if(moveUp)
-        {
-            if(row < numToWin)
-            {
-                return false;
-            }
-        }
-        else if(row + numToWin >= 15)
-        {
+        if(row + numToWin >= 15)
             return false;
-        }
 
         for(int i = 0; i < numToWin; i++)
         {
-            if(moveUp)
-            {
-                if(board[row-i][col] != token)
-                    return false;
-            }
-            else
-            {
-                if(board[row+i][col] != token)
-                    return false;
-            }
+            if(board[row+i][col] != token)
+                return false;
         }
         return true;
     }
 
-    public boolean checkHorizontal(char[][] board, int row, int col, char token, boolean moveRight)
+    public boolean checkHorizontal(char[][] board, int row, int col, char token)
     {
+        if(col + numToWin >= 15)
+            return false;
+
+        for(int i = 0; i < numToWin; i++)
+        {
+            if(board[row][col+i] != token)
+                return false;
+        }
+        return true;
+
+    }
+
+    public boolean checkDiagonal(char[][] board, int row, int col, char token, boolean moveRight)
+    {
+        if(row + numToWin >= 15)
+            return false;
         if(moveRight)
         {
             if(col + numToWin >= 15)
-            {
                 return false;
-            }
         }
         else if(col < numToWin)
-        {
             return false;
-        }
+
         for(int i = 0; i < numToWin; i++)
         {
             if(moveRight)
             {
-                if(board[row][col+i] != token)
+                if(board[row+i][col+i] != token)
                     return false;
             }
             else
             {
-                if(board[row][col-i] != token)
+                if(board[row+i][col-i] != token)
                     return false;
             }
         }
         return true;
-
-    }
-
-    public boolean checkDiagonal(char[][] board, int row, int col, char token, boolean moveUp, boolean moveRight)
-    {
-        boolean isWin = true;
-        for(int i = 0; i < 4; i++)
-        {
-            if(moveRight)
-            {
-                if(board[col+i][row+i] != token)
-                {
-                    isWin = false;
-                    break;
-                }
-            }
-            else
-            {
-                if(board[col-i][row+i] != token)
-                {
-                    isWin = false;
-                    break;
-                }
-            }
-        }
-        return isWin;
     }
 
     public String getWinner(){

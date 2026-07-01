@@ -17,7 +17,7 @@ public class GomokuBoard {
         }
     }
 
-    public boolean PlaceTile(String column, String row, boolean player)
+    public boolean PlaceTile(String row, String column, boolean player)
     {
         int colVal = -1;
         int rowVal = -1;
@@ -36,22 +36,22 @@ public class GomokuBoard {
             return player;
         }
 
-        if(gameBoard[colVal][rowVal] != '.')
+        if(gameBoard[rowVal-1][colVal-1] != '.')
         {
             System.out.println("Invalid input. There is already a tile there.");
         }
         else if(player)
         {
-            gameBoard[colVal][rowVal] = 'X';
-            mostRecentMove[0] = colVal;
-            mostRecentMove[1] = rowVal;
+            gameBoard[rowVal-1][colVal-1] = 'X';
+            mostRecentMove[0] = rowVal-1;
+            mostRecentMove[1] = colVal-1;
             player = false;
         }
         else
         {
-            gameBoard[colVal][rowVal] = 'O';
-            mostRecentMove[0] = colVal;
-            mostRecentMove[1] = rowVal;
+            gameBoard[rowVal-1][colVal-1] = 'O';
+            mostRecentMove[0] = rowVal-1;
+            mostRecentMove[1] = colVal-1;
             player = true;
         }
         return player;

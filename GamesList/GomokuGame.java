@@ -47,6 +47,7 @@ public class GomokuGame {
                 System.out.println("Please select a place to place your tile, player 2");
             }
             board.DisplayBoard();
+            System.out.print("Row: ");
             playString = menuPrompt.nextLine().toLowerCase();
             if(playString.equals("quit"))
             {
@@ -54,6 +55,7 @@ public class GomokuGame {
                 break;
             }
             String play1 = playString;
+            System.out.print("Column: ");
             playString = menuPrompt.nextLine().toLowerCase();
             if(playString.equals("quit"))
             {
