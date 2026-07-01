@@ -11,7 +11,7 @@ public class MainMenu {
 
         while(!menuString.equals("quit"))
         {
-            System.out.println("Select a game from our menu by typing in the number of the game. Type in \"Quit\" to quit \n 1. Connect 4 \n 2. Mastermind \n 3. Blackjack \n 4. Yacht \n 5. Risky Dice \n 6. Farkle \n 7. Gomoku");
+            System.out.println("Select a game from our menu by typing in the number of the game. Type in \"Quit\" to quit \n 1. Connect 4 \n 2. Mastermind \n 3. Blackjack \n 4. Yacht \n 5. Risky Dice \n 6. Farkle \n 7. Gomoku \n 8. Poker");
             menuString = menuPrompt.nextLine().toLowerCase();
             games.ChooseGame(menuString, menuPrompt);
         }
