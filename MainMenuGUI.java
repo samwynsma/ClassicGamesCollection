@@ -74,6 +74,11 @@ public class MainMenuGUI extends JFrame {
             blackjackWindow.setVisible(true);
             return;
         }
+        if (menuString.equals("7")) {
+            GomokuGUI gomokuWindow = new GomokuGUI();
+            gomokuWindow.setVisible(true);
+            return;
+        }
         if (menuString.equals("5")) {
             RiskyDiceGUI riskyDiceWindow = new RiskyDiceGUI();
             riskyDiceWindow.setVisible(true);
