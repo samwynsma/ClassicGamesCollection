@@ -12,9 +12,9 @@ public class PokerGame {
         String playString = "";
         int players = 0;
 
-        while(players < 2 || players > 10)
+        while(players < 2 || players > 5)
         {
-            System.out.println("How many players do you want to have in this game? Please select a number between 2 and 10.");
+            System.out.println("How many players do you want to have in this game? Please select a number between 2 and 5.");
             playString = menuPrompt.nextLine().toLowerCase();
             try
             {
@@ -32,6 +32,7 @@ public class PokerGame {
         
         while(!playString.equals("no"))
         {
+            //PokerGameController gameInfo = new PokerGameController();
             playString = "no";
         }
     }
