@@ -88,4 +88,23 @@ public class PokerHands {
         }
         return false;
     }
+
+    public static boolean HasStraight(int[] cardFreqs, int totalCards)
+    {
+        for(int i = 0; i < cardFreqs.length - totalCards; i++)
+        {
+            boolean foundStraight = true;
+            for(int j = 0; j < totalCards; j++)
+            {
+                if(cardFreqs[i + j] != 1)
+                {
+                    foundStraight = false;
+                    break;
+                }
+            }
+            if(foundStraight)
+                return true;
+        }
+        return false;
+    }
 }
