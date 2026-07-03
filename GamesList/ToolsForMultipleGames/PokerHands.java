@@ -48,4 +48,44 @@ public class PokerHands {
         }
         return cardFreqs;
     }
+
+    public static boolean HasFiveOfAKind(int[] cardFreqs)
+    {
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] >= 5)
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean HasFourOfAKind(int[] cardFreqs)
+    {
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] >= 4)
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean HasThreeOfAKind(int[] cardFreqs)
+    {
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] >= 3)
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean HasPair(int[] cardFreqs)
+    {
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] >= 2)
+                return true;
+        }
+        return false;
+    }
 }
