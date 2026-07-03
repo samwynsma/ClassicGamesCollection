@@ -137,4 +137,26 @@ public class PokerHands {
     {
         return HasStraight(cardFreqs, cards.length) && HasFlush(cards);
     }
+
+    public static int TotalCardValue(int[] cardFreqs)
+    {
+        int totalValue = 0;
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            totalValue += (i * cardFreqs[i]);
+        }
+        return totalValue;
+    }
+
+    public static int GetHighCard(int[] cardFreqs)
+    {
+        int maxVal = 0;
+        int maxAppearances = 0;
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] >= maxAppearances)
+                maxVal = i;
+        }
+        return maxVal;
+    }
 }
