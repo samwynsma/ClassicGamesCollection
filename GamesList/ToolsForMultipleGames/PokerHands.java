@@ -20,7 +20,31 @@ public class PokerHands {
         int[] cardFreqs = new int[maxCard];
         for(int i = 0; i < maxCard; i++)
         {
-            
+            for(int j = 0; j < cards.length; j++)
+            {
+                String cardRank = cards[j].substring(1);
+                if(Integer.parseInt(cardRank) == i+1)
+                {
+                    cardFreqs[i]++;
+                }
+            }
+        }
+        return cardFreqs;
+    }
+
+    public static int[] GetCardFrequencies(String cardTypes, String[] cards)
+    {
+        int[] cardFreqs = new int[cardTypes.length()];
+        for(int i = 0; i < cardTypes.length(); i++)
+        {
+            for(int j = 0; j < cards.length; j++)
+            {
+                char cardRank = cards[j].charAt(1);
+                if(cardRank == cardTypes.charAt(i))
+                {
+                    cardFreqs[i]++;
+                }
+            }
         }
         return cardFreqs;
     }
