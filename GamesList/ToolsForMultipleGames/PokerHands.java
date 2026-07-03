@@ -107,4 +107,34 @@ public class PokerHands {
         }
         return false;
     }
+
+    public static boolean HasFullHouse(int[] cardFreqs)
+    {
+        boolean hasThree = false;
+        boolean hasTwo = false;
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] == 3)
+                hasThree = true;
+            if(cardFreqs[i] == 2)
+                hasTwo = true;
+        }
+        return hasThree && hasTwo;
+    }
+
+    public static boolean HasTwoPair(int[] cardFreqs)
+    {
+        int pairs = 0;
+        for(int i = 0; i < cardFreqs.length; i++)
+        {
+            if(cardFreqs[i] == 2)
+                pairs++;
+        }
+        return pairs == 2;
+    }
+
+    public static boolean HasStraightFlush(int[] cardFreqs, String[] cards)
+    {
+        return HasStraight(cardFreqs, cards.length) && HasFlush(cards);
+    }
 }
