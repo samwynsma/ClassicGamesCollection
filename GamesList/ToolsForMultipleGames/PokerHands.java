@@ -159,4 +159,51 @@ public class PokerHands {
         }
         return maxVal;
     }
+
+    public static int GetHandValue(int[] cardFreqs, String[] cards)
+    {
+        int handValue = 0;
+        if(HasStraightFlush(cardFreqs, cards) && GetHighCard(cardFreqs) == cardFreqs.length)
+        {
+            handValue += 1000;
+        }
+        else if(HasFiveOfAKind(cardFreqs))
+        {
+            handValue += 900;
+        }
+        else if(HasStraightFlush(cardFreqs, cards))
+        {
+            handValue += 800;
+        }
+        else if(HasFourOfAKind(cardFreqs))
+        {
+            handValue += 700;
+        }
+        else if(HasFullHouse(cardFreqs))
+        {
+            handValue += 600;
+        }
+        else if(HasFlush(cards))
+        {
+            handValue += 500;
+        }
+        else if(HasStraight(cardFreqs, cards.length))
+        {
+            handValue += 400;
+        }
+        else if(HasThreeOfAKind(cardFreqs))
+        {
+            handValue += 300;
+        }
+        else if(HasTwoPair(cardFreqs))
+        {
+            handValue += 200;
+        }
+        else if(HasPair(cardFreqs))
+        {
+            handValue += 100;
+        }
+        handValue += TotalCardValue(cardFreqs);
+        return handValue;
+    }
 }
