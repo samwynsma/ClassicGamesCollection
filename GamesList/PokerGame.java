@@ -1,5 +1,6 @@
 package GamesList;
 
+import GamesList.PokerMaterials.PokerGameController;
 import java.util.Scanner;
 
 public class PokerGame {
@@ -32,7 +33,7 @@ public class PokerGame {
         
         while(!playString.equals("no"))
         {
-            //PokerGameController gameInfo = new PokerGameController();
+            PokerGameController gameInfo = new PokerGameController(players);
             playString = "no";
         }
     }
