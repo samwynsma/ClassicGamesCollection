@@ -7,6 +7,7 @@ public class PokerGameController {
     private CardDeck cards;
     public int players;
     public int currentPlayer;
+    public PokerHand[] hands;
 
     public PokerGameController(int players) {
         char[] suits = new char[4];
@@ -16,12 +17,24 @@ public class PokerGameController {
         suits[3] = '\u2663';
         this.players = players;
         cards = new CardDeck(suits);
-        PokerHand[] hands = new PokerHand[players];
+        hands = new PokerHand[players];
         for(int i = 0; i < hands.length; i++)
         {
             hands[i] = new PokerHand();
         }
         currentPlayer = 0;
+    }
+
+    public void DealCards()
+    {
+        for(int i = 0; i < players; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                String card = cards.DrawCard();
+                hands[i].AddCard(card);
+            }
+        }
     }
     
 }
