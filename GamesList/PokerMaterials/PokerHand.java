@@ -15,15 +15,28 @@ public class PokerHand {
         handValue = 0;
     }
 
-    public void Discard(List<Integer> discardLocs)
+    public List<String> Discard(List<Integer> discardLocs)
     {
         List<String> newCards = new ArrayList<String>();
+        List<String> discarded = new ArrayList<String>();
         for(int i = 0; i < cards.size(); i++)
         {
             if(!discardLocs.contains(i))
+            {
                 newCards.add(cards.get(i));
+            }
+            else
+            {
+                discarded.add(cards.get(i));
+            }
         }
         cards = newCards;
+        return discarded;
+    }
+
+    public void AddCard(String card)
+    {
+        cards.add(card);
     }
 
     public int GetHandValue()
