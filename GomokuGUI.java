@@ -30,7 +30,7 @@ public class GomokuGUI extends JFrame {
 
         JPanel boardPanel = new JPanel(new GridLayout(BOARD_SIZE, BOARD_SIZE, 2, 2));
         boardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        boardPanel.setBackground(Color.DARK_GRAY);
+        boardPanel.setBackground(new Color(255, 250, 205));
 
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
@@ -38,8 +38,8 @@ public class GomokuGUI extends JFrame {
                 cell.setFocusPainted(false);
                 cell.setFont(cell.getFont().deriveFont(Font.BOLD, 12f));
                 cell.setPreferredSize(new Dimension(34, 34));
-                cell.setBackground(Color.WHITE);
-                cell.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+                cell.setBackground(new Color(255, 255, 200));
+                cell.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 150)));
                 final int finalRow = row;
                 final int finalCol = col;
                 cell.addActionListener(e -> handleMove(finalRow, finalCol));
@@ -158,15 +158,15 @@ public class GomokuGUI extends JFrame {
                 if (token == 'X') {
                     cell.setText("X");
                     cell.setForeground(Color.RED);
-                    cell.setBackground(new Color(240, 240, 240));
+                    cell.setBackground(new Color(255, 240, 245));
                 } else if (token == 'O') {
                     cell.setText("O");
                     cell.setForeground(Color.BLUE);
-                    cell.setBackground(new Color(240, 240, 240));
+                    cell.setBackground(new Color(240, 248, 255));
                 } else {
                     cell.setText("");
                     cell.setForeground(Color.BLACK);
-                    cell.setBackground(Color.WHITE);
+                    cell.setBackground(new Color(255, 255, 200));
                 }
             }
         }
